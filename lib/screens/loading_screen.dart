@@ -9,7 +9,6 @@ class LoadingScreen extends StatefulWidget {
 }
 
 class _LoadingScreenState extends State<LoadingScreen> {
-
   @override
   void initState() {
     super.initState();
@@ -19,10 +18,11 @@ class _LoadingScreenState extends State<LoadingScreen> {
   void getLocationData() async {
     WeatherModel weatherModel = WeatherModel();
     var weatherData = await weatherModel.getLocationWeather();
+    var forecastData = await weatherModel.getLocationForecast();
     Navigator.push(
       context,
       MaterialPageRoute(builder: (context) {
-        return LocationScreen(weatherData);
+        return LocationScreen(weatherData, forecastData);
       }),
     );
   }
@@ -31,8 +31,8 @@ class _LoadingScreenState extends State<LoadingScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Center(
-        child: SpinKitRing(
-          color: Colors.white,
+        child: SpinKitFadingCube(
+          color: Colors.greenAccent,
           size: 100.0,
         ),
       ),

@@ -11,6 +11,8 @@ class _CityScreenState extends State<CityScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      resizeToAvoidBottomPadding: false,
+      resizeToAvoidBottomInset: false,
       body: Container(
         decoration: BoxDecoration(
           image: DecorationImage(
@@ -36,7 +38,8 @@ class _CityScreenState extends State<CityScreen> {
                   ),
                 ),
                 Container(
-                  padding: EdgeInsets.symmetric(vertical: 25.0, horizontal: 20.0),
+                  padding:
+                      EdgeInsets.symmetric(vertical: 25.0, horizontal: 20.0),
                   child: TextField(
                     style: TextStyle(
                       color: Colors.black,
