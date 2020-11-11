@@ -64,8 +64,16 @@ class WeatherModel {
       return WeatherIcons.rain;
     } else if (condition >= 600 && condition <= 622) {
       return WeatherIcons.snowflake_cold;
-    } else if (condition >= 701 && condition <= 771) {
-      return WeatherIcons.fog;
+    } else if ( condition >= 701 && condition <= 771) {
+      if (condition == 701 || condition == 711 || condition == 741) {
+        return WeatherIcons.fog;
+      }
+      else {
+          return WeatherIcons.dust;
+      }
+    }
+    else if ( condition == 781) {
+      return WeatherIcons.tornado;
     } else if (condition == 800) {
       return WeatherIcons.day_sunny;
     } else if (condition == 801 || condition == 802){

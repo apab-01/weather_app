@@ -13,7 +13,7 @@ class GetTimeWeather {
   }
   dynamic getDate(dynamic currentTimeInEpoch,dynamic timezoneOffset) {
     var date = DateTime.fromMillisecondsSinceEpoch((currentTimeInEpoch-19800+timezoneOffset) * 1000);
-    var time = DateFormat.MMMMEEEEd().format(date);
+    var time = DateFormat.MMMEd().format(date);
     return time;
   }
 }

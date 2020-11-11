@@ -29,6 +29,10 @@ class _LocationScreenState extends State<LocationScreen> {
   var timeIn12Hour = new List();
   var timeIn24Hour = new List();
   var forecastCondition = new List();
+  var dailyForecastCondition = new List();
+  var dailyForecastDate = new List();
+  var minDailyTemp = new List();
+  var maxDailyTemp = new List();
   WeatherModel weather = WeatherModel();
   GetTimeWeather timeWeather = GetTimeWeather();
 
@@ -53,10 +57,9 @@ class _LocationScreenState extends State<LocationScreen> {
       var feelsLikeTemp = weatherData['main']['feels_like'];
       feelsLike = feelsLikeTemp.toInt();
       condition = weatherData['weather'][0]['description'];
- //     int currentTimeInEpoch = (weatherData['dt']).toInt();
- //     currentDate = timeWeather.getDate(currentTimeInEpoch,timezoneOffset);
-
+      var currentTimeInEpoch = forecastData['daily'][0]['dt'];
       timezoneOffset = forecastData['timezone_offset'];
+      currentDate = timeWeather.getDate(currentTimeInEpoch,timezoneOffset);
       // for(int i=0;i<24;i+=2)
       // {
       //   timeInEpoch.add(forecastData['hourly'][i]['dt']);
@@ -137,6 +140,60 @@ class _LocationScreenState extends State<LocationScreen> {
         (forecastData['hourly'][18]['temp']).toInt(),
         (forecastData['hourly'][20]['temp']).toInt(),
         (forecastData['hourly'][22]['temp']).toInt(),
+      ];
+      var dailyCondition = [
+        forecastData['daily'][1]['weather'][0]['id'],
+        forecastData['daily'][2]['weather'][0]['id'],
+        forecastData['daily'][3]['weather'][0]['id'],
+        forecastData['daily'][4]['weather'][0]['id'],
+        forecastData['daily'][5]['weather'][0]['id'],
+        forecastData['daily'][6]['weather'][0]['id'],
+        forecastData['daily'][7]['weather'][0]['id'],
+      ];
+      dailyForecastCondition = [
+        weather.getWeatherIcon(dailyCondition[0]),
+        weather.getWeatherIcon(dailyCondition[1]),
+        weather.getWeatherIcon(dailyCondition[2]),
+        weather.getWeatherIcon(dailyCondition[3]),
+        weather.getWeatherIcon(dailyCondition[4]),
+        weather.getWeatherIcon(dailyCondition[5]),
+        weather.getWeatherIcon(dailyCondition[6]),
+      ];
+      var dailyTimeInEpoch = [
+        forecastData['daily'][1]['dt'],
+        forecastData['daily'][2]['dt'],
+        forecastData['daily'][3]['dt'],
+        forecastData['daily'][4]['dt'],
+        forecastData['daily'][5]['dt'],
+        forecastData['daily'][6]['dt'],
+        forecastData['daily'][7]['dt'],
+      ];
+      dailyForecastDate = [
+        timeWeather.getDate(dailyTimeInEpoch[0],timezoneOffset),
+        timeWeather.getDate(dailyTimeInEpoch[1],timezoneOffset),
+        timeWeather.getDate(dailyTimeInEpoch[2],timezoneOffset),
+        timeWeather.getDate(dailyTimeInEpoch[3],timezoneOffset),
+        timeWeather.getDate(dailyTimeInEpoch[4],timezoneOffset),
+        timeWeather.getDate(dailyTimeInEpoch[5],timezoneOffset),
+        timeWeather.getDate(dailyTimeInEpoch[6],timezoneOffset),
+      ];
+      minDailyTemp = [
+        (forecastData['daily'][1]['temp']['min']).toInt(),
+        (forecastData['daily'][2]['temp']['min']).toInt(),
+        (forecastData['daily'][3]['temp']['min']).toInt(),
+        (forecastData['daily'][4]['temp']['min']).toInt(),
+        (forecastData['daily'][5]['temp']['min']).toInt(),
+        (forecastData['daily'][6]['temp']['min']).toInt(),
+        (forecastData['daily'][7]['temp']['min']).toInt(),
+      ];
+      maxDailyTemp = [
+        (forecastData['daily'][1]['temp']['max']).toInt(),
+        (forecastData['daily'][2]['temp']['max']).toInt(),
+        (forecastData['daily'][3]['temp']['max']).toInt(),
+        (forecastData['daily'][4]['temp']['max']).toInt(),
+        (forecastData['daily'][5]['temp']['max']).toInt(),
+        (forecastData['daily'][6]['temp']['max']).toInt(),
+        (forecastData['daily'][7]['temp']['max']).toInt(),
       ];
     });
   }
@@ -243,7 +300,7 @@ class _LocationScreenState extends State<LocationScreen> {
                 child: Align(
                   alignment: Alignment.topCenter,
                   child: Text(
-                    'Wed,4 Nov',
+                    '$currentDate',
                     textAlign: TextAlign.center,
                     style: TextStyle(
                       fontFamily: 'Spartan MB',
@@ -296,7 +353,7 @@ class _LocationScreenState extends State<LocationScreen> {
                         Text(
                           'Today',
                           style: TextStyle(
-                            fontSize: 16.0,
+                            fontSize: 17.0,
                           ),
                         ),
                         InkWell(
@@ -304,13 +361,19 @@ class _LocationScreenState extends State<LocationScreen> {
                             'Next 7 Days >',
                             style: TextStyle(
                               color: Colors.blue,
-                              fontSize: 16.0,
+                              fontSize: 17.0,
                             ),
                           ),
                           onTap: () {
-                            Navigator.push(context,
+                            Navigator.push(
+                                context,
                                 MaterialPageRoute(builder: (context) {
-                              return ForecastScreen();
+                              return ForecastScreen(
+                                  dailyForecastCondition: dailyForecastCondition,
+                                  minDailyTemp: minDailyTemp,
+                                  maxDailyTemp : maxDailyTemp,
+                                  dailyForecastDate: dailyForecastDate,
+                              );
                             }));
                           },
                         ),
