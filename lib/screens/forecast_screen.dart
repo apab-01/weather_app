@@ -48,7 +48,13 @@ class _ForecastScreenState extends State<ForecastScreen> {
       home: SafeArea(
         child: Scaffold(
           appBar: AppBar(
-            title: Text('Weather Forecast'),
+            title: Text(
+                'Weather Forecast',
+              style: TextStyle(
+                fontFamily: 'Poppins',
+                fontSize: 22,
+              ),
+            ),
             leading: IconButton(
               icon: Icon(
                 Icons.arrow_back_ios,
@@ -176,13 +182,12 @@ class ExpandableWeatherTile extends StatelessWidget {
             '$date',
             style: TextStyle(
               fontSize: 20.0,
-              fontWeight: FontWeight.w500,
             ),
           ),
-          Text('$minTemp°C    $maxTemp°C',
+          Text('$minTemp°  /  $maxTemp° C',
             style: TextStyle(
               fontSize: 16.0,
-              fontWeight: FontWeight.w400,
+              fontWeight: FontWeight.w500,
             ),
           ),
         ],

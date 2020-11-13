@@ -269,10 +269,10 @@ class _LocationScreenState extends State<LocationScreen> {
                 ],
               ),
               SizedBox(
-                height: 20.0,
+                height: 15.0,
               ),
               Expanded(
-                flex: 2,
+                flex: 1,
                 child: ListView(
                   children: <Widget>[
                     Text(
@@ -280,18 +280,18 @@ class _LocationScreenState extends State<LocationScreen> {
                       textAlign: TextAlign.center,
                       style: TextStyle(
                         fontWeight: FontWeight.bold,
-                        fontFamily: 'Spartan MB',
-                        fontSize: 40.0,
+                        fontFamily: 'Poppins',
+                        fontSize: 38.0,
                       ),
                     ),
-                    Text(
-                      '$condition',
-                      textAlign: TextAlign.center,
-                      style: TextStyle(
-                        fontSize: 30.0,
-                        fontFamily: 'Spartan MB',
-                      ),
-                    ),
+                    // Text(
+                    //   '$condition',
+                    //   textAlign: TextAlign.center,
+                    //   style: TextStyle(
+                    //     fontSize: 30.0,
+                    //     fontFamily: 'Roboto',
+                    //   ),
+                    // ),
                   ],
                 ),
               ),
@@ -303,8 +303,7 @@ class _LocationScreenState extends State<LocationScreen> {
                     '$currentDate',
                     textAlign: TextAlign.center,
                     style: TextStyle(
-                      fontFamily: 'Spartan MB',
-                      fontSize: 22.0,
+                      fontSize: 19.0,
                     ),
                   ),
                 ),
@@ -322,7 +321,7 @@ class _LocationScreenState extends State<LocationScreen> {
                           style: kTempTextStyle,
                         ),
                         Align(
-                          alignment: Alignment.center,
+                         alignment: Alignment.center,
                           child: BoxedIcon(
                             weatherIcon,
                             size: 80.0,
@@ -331,17 +330,19 @@ class _LocationScreenState extends State<LocationScreen> {
                       ],
                     ),
                     Text(
-                      'Feels like $feelsLike°',
+                     // 'Feels like $feelsLike°',
+                      '$condition',
                       textAlign: TextAlign.center,
                       style: TextStyle(
-                        fontSize: 22.0,
+                        fontSize: 25.0,
+                        fontFamily: 'Poppins',
                       ),
                     ),
                   ],
                 ),
               ),
               SizedBox(
-                height: 20.0,
+                height: 32.0,
               ),
               Expanded(
                 flex: 2,
@@ -354,6 +355,7 @@ class _LocationScreenState extends State<LocationScreen> {
                           'Today',
                           style: TextStyle(
                             fontSize: 17.0,
+                            fontFamily: 'Poppins',
                           ),
                         ),
                         InkWell(
@@ -362,6 +364,7 @@ class _LocationScreenState extends State<LocationScreen> {
                             style: TextStyle(
                               color: Colors.blue,
                               fontSize: 17.0,
+                              fontFamily: 'Poppins',
                             ),
                           ),
                           onTap: () {
@@ -532,7 +535,7 @@ class HourlyForecastBox extends StatelessWidget {
               size: 20.0,
             ),
           ),
-          Text('$tempForecast° C'),
+          Text(' $tempForecast°'),
         ],
       ),
     );
