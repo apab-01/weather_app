@@ -37,7 +37,7 @@ class _LoadingScreenState extends State<LoadingScreen> {
         routeName: '/',
         navigateAfterFuture: getLocationData(),
         image: Image.asset('images/logo.jpg'),
-        backgroundColor: Colors.white,
+       backgroundColor: Colors.white,
         photoSize: 110.0,
         loaderColor: Colors.red,
       ),

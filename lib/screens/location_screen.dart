@@ -210,19 +210,21 @@ class _LocationScreenState extends State<LocationScreen> {
       }
       });
     return Scaffold(
-      body: Container(
-        decoration: BoxDecoration(
-          image: DecorationImage(
-            image: AssetImage('images/location_background.jpg'),
-            fit: BoxFit.cover,
-            colorFilter: ColorFilter.mode(
-              Colors.white.withOpacity(0.6),
-              BlendMode.dstATop,
-            ),
-          ),
-        ),
-        constraints: BoxConstraints.expand(),
-        child: SafeArea(
+      backgroundColor: Color(0xFF18191A),
+      body:
+      // Container(
+      //   decoration: BoxDecoration(
+      //     image: DecorationImage(
+      //       image: AssetImage('images/location_background.jpg'),
+      //       fit: BoxFit.cover,
+      //       colorFilter: ColorFilter.mode(
+      //         Colors.white.withOpacity(0.6),
+      //         BlendMode.dstATop,
+      //       ),
+      //     ),
+      //   ),
+      //   constraints: BoxConstraints.expand(),
+        SafeArea(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.start,
             crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -284,14 +286,6 @@ class _LocationScreenState extends State<LocationScreen> {
                         fontSize: 38.0,
                       ),
                     ),
-                    // Text(
-                    //   '$condition',
-                    //   textAlign: TextAlign.center,
-                    //   style: TextStyle(
-                    //     fontSize: 30.0,
-                    //     fontFamily: 'Roboto',
-                    //   ),
-                    // ),
                   ],
                 ),
               ),
@@ -330,7 +324,6 @@ class _LocationScreenState extends State<LocationScreen> {
                       ],
                     ),
                     Text(
-                     // 'Feels like $feelsLike°',
                       '$condition',
                       textAlign: TextAlign.center,
                       style: TextStyle(
@@ -362,7 +355,9 @@ class _LocationScreenState extends State<LocationScreen> {
                           child: Text(
                             'Next 7 Days >',
                             style: TextStyle(
-                              color: Colors.blue,
+                         //     color: Color(0xFFBB86FC),
+                              color: Colors.tealAccent,
+                        //       color: Colors.blue,
                               fontSize: 17.0,
                               fontFamily: 'Poppins',
                             ),
@@ -385,8 +380,8 @@ class _LocationScreenState extends State<LocationScreen> {
                     Divider(
                       height: 20,
                       thickness: 3,
-                      indent: 15,
-                      endIndent: 15,
+                      indent: 10,
+                      endIndent: 10,
                     ),
                     Container(
                       margin: EdgeInsets.symmetric(vertical: 5.0),
@@ -499,8 +494,8 @@ class _LocationScreenState extends State<LocationScreen> {
             ],
           ),
         ),
-      ),
-    );
+      );
+    // );
   }
 }
 
@@ -532,7 +527,7 @@ class HourlyForecastBox extends StatelessWidget {
             alignment: Alignment.center,
             child: BoxedIcon(
               forecastCondition,
-              size: 20.0,
+              size: 21.0,
             ),
           ),
           Text(' $tempForecast°'),

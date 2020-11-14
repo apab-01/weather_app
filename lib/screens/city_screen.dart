@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-//import 'package:weather_app/utilities/constants.dart';
 
 class CityScreen extends StatefulWidget {
   @override
@@ -11,8 +10,8 @@ class _CityScreenState extends State<CityScreen> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      theme: ThemeData.dark(),
       home: Scaffold(
+        backgroundColor: Color(0xFF18191A),
         resizeToAvoidBottomPadding: false,
         resizeToAvoidBottomInset: false,
         body: SafeArea(
@@ -28,6 +27,7 @@ class _CityScreenState extends State<CityScreen> {
                     child: Icon(
                       Icons.arrow_back_ios,
                       size: 50.0,
+                      color: Colors.white,
                     ),
                   ),
                 ),
@@ -63,15 +63,6 @@ class _CityScreenState extends State<CityScreen> {
                     },
                   ),
                 ),
-                // FlatButton(
-                //   onPressed: () {
-                //     Navigator.pop(context, cityName);
-                //   },
-                //   child: Text(
-                //     'Get Weather',
-                //     style: kButtonTextStyle,
-                //   ),
-                // ),
                 RaisedButton(
                   onPressed: () {
                     Navigator.pop(context, cityName);
