@@ -9,9 +9,8 @@ class _CityScreenState extends State<CityScreen> {
   String cityName;
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      home: Scaffold(
-        backgroundColor: Color(0xFF18191A),
+    return Scaffold(
+       // backgroundColor: Color(0xFF18191A),
         resizeToAvoidBottomPadding: false,
         resizeToAvoidBottomInset: false,
         body: SafeArea(
@@ -21,13 +20,15 @@ class _CityScreenState extends State<CityScreen> {
                 Align(
                   alignment: Alignment.topLeft,
                   child: FlatButton(
+                    materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
                     onPressed: () {
                       Navigator.pop(context);
                     },
                     child: Icon(
-                      Icons.arrow_back_ios,
-                      size: 50.0,
-                      color: Colors.white,
+                      Icons.arrow_back,
+                      size: 45.0,
+                    //  color: Theme.of(context).accentIconTheme.color,
+                    //  color: Colors.white,
                     ),
                   ),
                 ),
@@ -35,27 +36,31 @@ class _CityScreenState extends State<CityScreen> {
                   padding: EdgeInsets.symmetric(vertical: 25.0, horizontal: 20.0),
                   child: TextField(
                     style: TextStyle(
-                      color: Colors.black,
+                   //   color: Colors.black,
                       fontSize: 22.0,
                     ),
                     decoration: InputDecoration(
-                      fillColor: Colors.white,
+                   //   fillColor: Colors.white,
                       filled: true,
                       icon: Icon(
                         Icons.my_location,
-                        color: Colors.white,
+                  //      color: Colors.white,
+                        color: Theme.of(context).accentIconTheme.color,
                         size: 32.0,
                       ),
                       hintText: 'Enter location',
                       hintStyle: TextStyle(
-                        color: Colors.grey,
+                     //   color: Theme.of(context).accentColor,
                         fontSize: 22.0,
                       ),
-                      border: OutlineInputBorder(
+                      enabledBorder: OutlineInputBorder(
                         borderRadius: BorderRadius.all(
                           Radius.circular(10.0),
                         ),
-                        borderSide: BorderSide.none,
+                    //    borderSide: BorderSide.none,
+                        borderSide: BorderSide(
+                          color: Colors.black,
+                        ),
                       ),
                     ),
                     onChanged: (value) {
@@ -92,7 +97,6 @@ class _CityScreenState extends State<CityScreen> {
             ),
           ),
         ),
-      ),
     );
   }
 }

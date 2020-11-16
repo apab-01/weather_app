@@ -43,13 +43,11 @@ class _ForecastScreenState extends State<ForecastScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      theme: ThemeData.dark(),
-      home: SafeArea(
+    return SafeArea(
         child: Scaffold(
-          backgroundColor: Color(0xFF18191A),
+         // backgroundColor: Color(0xFF18191A), //
           appBar: AppBar(
-            backgroundColor: Color(0xFFBB86FC),
+         //   backgroundColor: Color(0xFFBB86FC), //
           //  backgroundColor: Color.fromARGB(10,18,19,110),
             title: Text(
                 'Weather Forecast',
@@ -62,7 +60,6 @@ class _ForecastScreenState extends State<ForecastScreen> {
             leading: IconButton(
               icon: Icon(
                 Icons.arrow_back_ios,
-             //   color: Color(0xFFBB86FC),
               ),
               iconSize: 21.0,
               onPressed: () {
@@ -147,7 +144,6 @@ class _ForecastScreenState extends State<ForecastScreen> {
             ),
           ),
         ),
-      ),
     );
   }
 }
@@ -175,7 +171,7 @@ class ExpandableWeatherTile extends StatelessWidget {
     return ExpansionTile(
       initiallyExpanded: initiallyExpanded,
     //  backgroundColor: Colors.grey[100],
-      backgroundColor: Color(0xFF1E1E1E),
+    //  backgroundColor: Color(0xFF1E1E1E), //
       leading: BoxedIcon(
       //  WeatherIcons.day_sunny,
         dailyCondition,

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 const kTempTextStyle = TextStyle(
-  fontFamily: 'Open Sans',
+ // fontFamily: 'Open Sans',
   fontSize: 80.0,
 );
 

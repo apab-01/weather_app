@@ -37,6 +37,27 @@ class WeatherModel {
     var forecastData = await network.getData();
     return forecastData;
   }
+  Future<dynamic> getLocationAQI() async {
+    Location l = Location();
+    await l.getCurrentLocation();
+    NetworkHelper network = NetworkHelper(
+        'https://api.waqi.info/feed/geo:${l.latitude};${l.longitude}/?token=700050914cc017cb38735082056a63b4e4020eee');
+    var aqiData = await network.getData();
+    return aqiData;
+  }
+
+  Future<dynamic> getCityAQI(dynamic nameOfCity) async {
+    NetworkHelper network = NetworkHelper(
+        'https://api.waqi.info/feed/$nameOfCity/?token=700050914cc017cb38735082056a63b4e4020eee');
+    var aqiData = await network.getData();
+    return aqiData;
+  }
+  // Future<dynamic> getCityAQI(dynamic latitude,dynamic longitude) async {
+  //   NetworkHelper network = NetworkHelper(
+  //       'https://api.waqi.info/feed/geo:$latitude;$longitude/?token=700050914cc017cb38735082056a63b4e4020eee');
+  //   var aqiData = await network.getData();
+  //   return aqiData;
+  // }
 
   // Future<dynamic> getCityForecast(dynamic cityName) async {
   //   NetworkHelper network = NetworkHelper(

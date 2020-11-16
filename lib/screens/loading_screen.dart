@@ -20,20 +20,21 @@ class _LoadingScreenState extends State<LoadingScreen> {
     WeatherModel weatherModel = WeatherModel();
     var weatherData = await weatherModel.getLocationWeather();
     var forecastData = await weatherModel.getLocationForecast();
+    var aqiData = await weatherModel.getLocationAQI();
     Navigator.push(
       context,
       MaterialPageRoute(builder: (context) {
-        return LocationScreen(weatherData, forecastData);
+        return LocationScreen(weatherData, forecastData,aqiData);
       }),
     );
-    return Future.value(LocationScreen(weatherData, forecastData));
+    return Future.value(LocationScreen(weatherData, forecastData,aqiData));
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: SplashScreen(
-        seconds: 5,
+        seconds: 4,
         routeName: '/',
         navigateAfterFuture: getLocationData(),
         image: Image.asset('images/logo.jpg'),
