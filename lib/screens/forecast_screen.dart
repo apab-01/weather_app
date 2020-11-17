@@ -170,6 +170,7 @@ class ExpandableWeatherTile extends StatelessWidget {
   Widget build(BuildContext context) {
     return ExpansionTile(
       initiallyExpanded: initiallyExpanded,
+    backgroundColor: Theme.of(context).disabledColor,
     //  backgroundColor: Colors.grey[100],
     //  backgroundColor: Color(0xFF1E1E1E), //
       leading: BoxedIcon(

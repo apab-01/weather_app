@@ -354,7 +354,7 @@ class _LocationScreenState extends State<LocationScreen> {
                         Align(
                           alignment: Alignment.topCenter,
                           child: Text(
-                            'AQI ',
+                            '  AQI',
                             textAlign: TextAlign.center,
                             style: TextStyle(
                               fontSize: 23.0,
@@ -365,7 +365,7 @@ class _LocationScreenState extends State<LocationScreen> {
                           materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
                           child: Text(
                             '$aqi',
-                            textAlign: TextAlign.center,
+                         //   textAlign: TextAlign.center,
                             style: TextStyle(
                               decoration: TextDecoration.underline,
                               color: Theme.of(context).accentIconTheme.color,

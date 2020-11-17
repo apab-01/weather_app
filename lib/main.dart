@@ -18,6 +18,7 @@ class MyApp extends StatelessWidget {
           buttonColor: Colors.blueAccent,
           textTheme: ButtonTextTheme.accent,
         ),
+          disabledColor: Colors.grey[200],
         ),
         darkTheme: ThemeData.dark().copyWith(
           scaffoldBackgroundColor: Color(0xFF18191A),
@@ -32,8 +33,10 @@ class MyApp extends StatelessWidget {
           accentIconTheme: IconThemeData(
             color: Colors.white,
           ),
+          disabledColor: Color(0x721E1E1E),
+        //  disabledColor: Color(0x0018191A),
         ),
-    //   themeMode: ThemeMode.system,
+   //    themeMode: ThemeMode.system,
       themeMode: ThemeMode.dark,
        home: LoadingScreen(),
      );

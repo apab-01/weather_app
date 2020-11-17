@@ -52,95 +52,96 @@ class _AQIScreenState extends State<AQIScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text(
-          'AQI Chart',
-          style: TextStyle(
-            fontFamily: 'Poppins',
-            fontSize: 22,
-          ),
-        ),
-        leading: IconButton(
-          icon: Icon(
-            Icons.arrow_back,
-          ),
-          iconSize: 24.0,
-          onPressed: () {
-            Navigator.pop(context);
-          },
-        ),
-        centerTitle: true,
-      ),
-      body: Column(
-        children: <Widget>[
-          SizedBox(
-            height: MediaQuery.of(context).size.height*0.08,
-          ),
-          Text(
-            '$city',
+        appBar: AppBar(
+          title: Text(
+            'AQI Chart',
             style: TextStyle(
-              fontSize: 28.0,
+              fontFamily: 'Poppins',
+              fontSize: 22,
             ),
           ),
-          SizedBox(
-            height: MediaQuery.of(context).size.height*0.025,
+          leading: IconButton(
+            icon: Icon(
+              Icons.arrow_back,
+            ),
+            iconSize: 24.0,
+            onPressed: () {
+              Navigator.pop(context);
+            },
           ),
-          Center(
-            child: Container(
-              height: MediaQuery.of(context).size.height*0.6,
-              width: MediaQuery.of(context).size.width*0.9,
-              child: SfRadialGauge(
-                axes: <RadialAxis>[
-                  RadialAxis(
-                    minimum: 0,
-                    maximum: 500,
-                    ranges: <GaugeRange>[
-                      GaugeRange(startValue: 0, endValue: 50, color: Colors.green),
-                      GaugeRange(
-                          startValue: 50, endValue: 100, color: Color(0xFFA3C853)),
-                      GaugeRange(
-                          startValue: 100, endValue: 200, color: Colors.yellow),
-                      GaugeRange(
-                          startValue: 200, endValue: 300, color: Colors.orange),
-                      GaugeRange(startValue: 300, endValue: 400, color: Colors.red),
-                      GaugeRange(
-                          startValue: 400, endValue: 500, color: Color(0xFF7D0022)),
-                    ],
-                    pointers: <GaugePointer>[
-                      NeedlePointer(
-                        value: AQI.toDouble(),
-                        enableAnimation: true,
-                         needleColor: Theme.of(context).unselectedWidgetColor,
-                      ),
-                    ],
-                    annotations: <GaugeAnnotation>[
-                      GaugeAnnotation(
-                        widget: Container(
-                          child: Text(
-                            '$AQI',
-                            style: TextStyle(
-                              fontSize: 28,
-                              fontWeight: FontWeight.bold,
-                            ),
-                          ),
-                        ),
-                        angle: 90,
-                        positionFactor: 0.5,
-                      ),
-                    ],
-                  ),
-                ],
+          centerTitle: true,
+        ),
+        body: Column(
+          children: <Widget>[
+            SizedBox(
+              height: MediaQuery.of(context).size.height*0.08,
+            ),
+            Text(
+              '$city',
+              style: TextStyle(
+                fontSize: 28.0,
               ),
             ),
-          ),
-          Text(
-            '$aqiCondition',
-            style: TextStyle(
-              fontSize: 28.0,
+            SizedBox(
+              height: MediaQuery.of(context).size.height*0.025,
             ),
-          ),
-        ],
-      ),
+            Center(
+              child: Container(
+                height: MediaQuery.of(context).size.height*0.6,
+                width: MediaQuery.of(context).size.width*0.9,
+                child: SfRadialGauge(
+                  enableLoadingAnimation: true,
+                  axes: <RadialAxis>[
+                    RadialAxis(
+                      minimum: 0,
+                      maximum: 500,
+                      ranges: <GaugeRange>[
+                        GaugeRange(startValue: 0, endValue: 50, color: Colors.green),
+                        GaugeRange(
+                            startValue: 50, endValue: 100, color: Color(0xFFA3C853)),
+                        GaugeRange(
+                            startValue: 100, endValue: 200, color: Colors.yellow),
+                        GaugeRange(
+                            startValue: 200, endValue: 300, color: Colors.orange),
+                        GaugeRange(startValue: 300, endValue: 400, color: Colors.red),
+                        GaugeRange(
+                            startValue: 400, endValue: 500, color: Color(0xFF7D0022)),
+                      ],
+                      pointers: <GaugePointer>[
+                        NeedlePointer(
+                          value: AQI.toDouble(),
+                          enableAnimation: true,
+                           needleColor: Theme.of(context).unselectedWidgetColor,
+                        ),
+                      ],
+                      annotations: <GaugeAnnotation>[
+                        GaugeAnnotation(
+                          widget: Container(
+                            child: Text(
+                              '$AQI',
+                              style: TextStyle(
+                                fontSize: 28,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                          ),
+                          angle: 90,
+                          positionFactor: 0.5,
+                        ),
+                      ],
+                    ),
+                  ],
+                ),
+              ),
+            ),
+            Text(
+              '$aqiCondition',
+              style: TextStyle(
+                fontSize: 28.0,
+              ),
+            ),
+          ],
+        ),
     );
   }
 }
