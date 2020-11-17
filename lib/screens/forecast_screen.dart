@@ -59,9 +59,9 @@ class _ForecastScreenState extends State<ForecastScreen> {
             ),
             leading: IconButton(
               icon: Icon(
-                Icons.arrow_back_ios,
+                Icons.arrow_back,
               ),
-              iconSize: 21.0,
+              iconSize: 22.0,
               onPressed: () {
                 Navigator.pop(context);
               },

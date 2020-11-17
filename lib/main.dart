@@ -20,7 +20,8 @@ class MyApp extends StatelessWidget {
         ),
         ),
         darkTheme: ThemeData.dark().copyWith(
-          backgroundColor: Color(0xFF18191A),
+          scaffoldBackgroundColor: Color(0xFF18191A),
+        //  scaffoldBackgroundColor: Color(0xFF121212),
           appBarTheme: AppBarTheme(
             color: Color(0xFFBB86FC),
           ),

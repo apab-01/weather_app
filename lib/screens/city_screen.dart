@@ -40,7 +40,7 @@ class _CityScreenState extends State<CityScreen> {
                       fontSize: 22.0,
                     ),
                     decoration: InputDecoration(
-                   //   fillColor: Colors.white,
+                   //   fillColor: Colors.white70,
                       filled: true,
                       icon: Icon(
                         Icons.my_location,
