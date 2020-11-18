@@ -47,12 +47,19 @@ class WeatherModel {
     return aqiData;
   }
 
-  Future<dynamic> getCityAQI(dynamic nameOfCity) async {
+  Future<dynamic> getCityAQI(dynamic latitude,dynamic longitude) async {
     NetworkHelper network = NetworkHelper(
-        'https://api.waqi.info/feed/$nameOfCity/?token=$token');
+        'https://api.waqi.info/feed/geo:$latitude;$longitude/?token=$token');
     var aqiData = await network.getData();
     return aqiData;
   }
+
+  // Future<dynamic> getCityAQI(dynamic nameOfCity) async {
+  //   NetworkHelper network = NetworkHelper(
+  //       'https://api.waqi.info/feed/$nameOfCity/?token=$token');
+  //   var aqiData = await network.getData();
+  //   return aqiData;
+  // }
 
   dynamic getWeatherIcon(int condition) {
     if (condition >= 200 && condition <= 232) {

@@ -38,6 +38,8 @@ flutter:
   - family: Source Sans Pro
     fonts:
     - asset: fonts/SourceSansPro-Regular.ttf
+    - asset: fonts/SourceSansPro-SemiBold.ttf
+      weight: 500
   - family: Poppins
     fonts:
     - asset: fonts/Poppins-Regular.ttf

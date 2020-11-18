@@ -333,7 +333,7 @@ class ExpandableWeatherTile extends StatelessWidget {
           Text(
             '$minTemp°  /  $maxTemp°  ${changeUnit(maxTemp, maxTempinC)}',
             style: TextStyle(
-              fontSize: 17.0,
+              fontSize: 18.0,
               fontWeight: FontWeight.w500,
             ),
           ),
@@ -352,6 +352,7 @@ class ExpandableWeatherTile extends StatelessWidget {
                     Text(
                       'Sunrise',
                       style: TextStyle(
+                        fontSize: 16.0,
                         fontWeight: FontWeight.w500,
                       ),
                     ),
@@ -359,6 +360,7 @@ class ExpandableWeatherTile extends StatelessWidget {
                     Text(
                       'Pressure',
                       style: TextStyle(
+                        fontSize: 16.0,
                         fontWeight: FontWeight.w500,
                       ),
                     ),
@@ -366,6 +368,7 @@ class ExpandableWeatherTile extends StatelessWidget {
                     Text(
                       'Wind',
                       style: TextStyle(
+                        fontSize: 16.0,
                         fontWeight: FontWeight.w500,
                       ),
                     ),
@@ -375,11 +378,22 @@ class ExpandableWeatherTile extends StatelessWidget {
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.end,
                   children: <Widget>[
-                    Text('$dforecastsunrise'),
+                    Text(
+                        '$dforecastsunrise',
+                      style: TextStyle(
+                        fontSize: 16.0,
+                      ),
+                    ),
                     SizedBox(height: 10.0),
-                    Text('$dpressure hPa'),
+                    Text('$dpressure hPa',
+                      style: TextStyle(
+                        fontSize: 16.0,
+                      ),),
                     SizedBox(height: 10.0),
-                    Text('$dwind km/h'),
+                    Text('$dwind km/h',
+                      style: TextStyle(
+                      fontSize: 16.0,
+                    ),),
                     SizedBox(height: 10.0),
                   ],
                 ),
@@ -389,6 +403,7 @@ class ExpandableWeatherTile extends StatelessWidget {
                     Text(
                       'Sunset',
                       style: TextStyle(
+                        fontSize: 16.0,
                         fontWeight: FontWeight.w500,
                       ),
                     ),
@@ -396,6 +411,7 @@ class ExpandableWeatherTile extends StatelessWidget {
                     Text(
                       'Humidity',
                       style: TextStyle(
+                        fontSize: 16.0,
                         fontWeight: FontWeight.w500,
                       ),
                     ),
@@ -403,6 +419,7 @@ class ExpandableWeatherTile extends StatelessWidget {
                     Text(
                       'UVI',
                       style: TextStyle(
+                        fontSize: 16.0,
                         fontWeight: FontWeight.w500,
                       ),
                     ),
@@ -412,11 +429,20 @@ class ExpandableWeatherTile extends StatelessWidget {
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.end,
                   children: <Widget>[
-                    Text('$dforecastsunset'),
+                    Text('$dforecastsunset',
+                      style: TextStyle(
+                        fontSize: 16.0,
+                      ),),
                     SizedBox(height: 10.0),
-                    Text('$dhumidity %'),
+                    Text('$dhumidity %',
+                      style: TextStyle(
+                        fontSize: 16.0,
+                      ),),
                     SizedBox(height: 10.0),
-                    Text('$dforecastuvi'),
+                    Text('$dforecastuvi',
+                      style: TextStyle(
+                        fontSize: 16.0,
+                      ),),
                     SizedBox(height: 10.0),
                   ],
                 ),

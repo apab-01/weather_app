@@ -16,6 +16,7 @@ class _MyAppState extends State<MyApp> {
       stream: bloc.darkThemeEnabled,
       initialData: true,
       builder: (context, snapshot) => MaterialApp(
+        debugShowCheckedModeBanner: false,
         theme: snapshot.data
             ? ThemeData.dark().copyWith(
                 scaffoldBackgroundColor: Color(0xFF18191A),
