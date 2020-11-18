@@ -35,12 +35,8 @@ class _AQIScreenState extends State<AQIScreen> {
       return 'Good';
     else if ( aqi <= 100 )
       return 'Satisfactory';
-    else if ( aqi <= 100 )
-      return 'Satisfactory';
     else if ( aqi <= 200 )
       return 'Moderate';
-    else if ( aqi <= 300 )
-      return 'Poor';
     else if ( aqi <= 300 )
       return 'Poor';
     else if ( aqi <= 400 )
@@ -97,15 +93,11 @@ class _AQIScreenState extends State<AQIScreen> {
                       maximum: 500,
                       ranges: <GaugeRange>[
                         GaugeRange(startValue: 0, endValue: 50, color: Colors.green),
-                        GaugeRange(
-                            startValue: 50, endValue: 100, color: Color(0xFFA3C853)),
-                        GaugeRange(
-                            startValue: 100, endValue: 200, color: Colors.yellow),
-                        GaugeRange(
-                            startValue: 200, endValue: 300, color: Colors.orange),
+                        GaugeRange(startValue: 50, endValue: 100, color: Color(0xFFA3C853)),
+                        GaugeRange(startValue: 100, endValue: 200, color: Colors.yellow),
+                        GaugeRange(startValue: 200, endValue: 300, color: Colors.orange),
                         GaugeRange(startValue: 300, endValue: 400, color: Colors.red),
-                        GaugeRange(
-                            startValue: 400, endValue: 500, color: Color(0xFF7D0022)),
+                        GaugeRange(startValue: 400, endValue: 500, color: Color(0xFF7D0022)),
                       ],
                       pointers: <GaugePointer>[
                         NeedlePointer(

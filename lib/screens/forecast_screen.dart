@@ -7,37 +7,105 @@ class ForecastScreen extends StatefulWidget {
   final dailyForecastCondition;
   final minDailyTemp;
   final maxDailyTemp;
+  final minDailyTempinC;
+  final maxDailyTempinC;
   final dailyForecastDate;
-  ForecastScreen({this.dailyForecastCondition,this.minDailyTemp,this.maxDailyTemp,this.dailyForecastDate});
+  final pressure;
+  final humidity;
+  final wind;
+  final forecastdailysunrise;
+  final forecastdailysunset;
+  final forecastuvi;
+  final bool darkThemeEnabled;
+
+  ForecastScreen({
+    this.dailyForecastCondition,
+    this.minDailyTemp,
+    this.maxDailyTemp,
+    this.dailyForecastDate,
+    this.pressure,
+    this.humidity,
+    this.wind,
+    this.forecastdailysunrise,
+    this.forecastdailysunset,
+    this.forecastuvi,
+    this.minDailyTempinC,
+    this.maxDailyTempinC,
+    this.darkThemeEnabled,
+  });
   @override
   _ForecastScreenState createState() => _ForecastScreenState();
 }
 
 class _ForecastScreenState extends State<ForecastScreen> {
-
   GetTimeWeather timeWeather = GetTimeWeather();
   var dailyDate = new List();
   var timezoneOffset;
   var timeInEpoch = new List();
   var minTemp = new List();
   var maxTemp = new List();
+  var minTempinC = new List();
+  var maxTempinC = new List();
+
   var dailyCondition = new List();
+  var Pressure = new List();
+  var Humidity = new List();
+  var Wind = new List();
+  var DailyForecastSunrise = new List();
+  var DailyForecastSunset = new List();
+  var ForecastUvi = new List();
+  bool DarkThemeEnabled;
+
   @override
   void initState() {
     super.initState();
     getDailyForecast(
-        widget.dailyForecastCondition,
-        widget.minDailyTemp,
-        widget.maxDailyTemp,
-        widget.dailyForecastDate,
+      widget.dailyForecastCondition,
+      widget.minDailyTemp,
+      widget.maxDailyTemp,
+      widget.dailyForecastDate,
+      widget.pressure,
+      widget.humidity,
+      widget.wind,
+      widget.forecastdailysunrise,
+      widget.forecastdailysunset,
+      widget.forecastuvi,
+      widget.minDailyTempinC,
+      widget.maxDailyTempinC,
+      widget.darkThemeEnabled,
     );
   }
-  void getDailyForecast(dynamic dailyForecastCondition,dynamic minDailyTemp,dynamic maxDailyTemp,dynamic dailyForecastDate) {
+
+  void getDailyForecast(
+      dynamic dailyForecastCondition,
+      dynamic minDailyTemp,
+      dynamic maxDailyTemp,
+      dynamic dailyForecastDate,
+      dynamic pressure,
+      dynamic humidity,
+      dynamic wind,
+      dynamic dailyforcastsunrise,
+      dynamic dailyforecastsunset,
+      dynamic forecastuvi,
+      dynamic mindailytempinC,
+      dynamic maxdailyempinC,
+      dynamic darkThemeEnabled,
+      ) {
     setState(() {
-    minTemp = minDailyTemp;
-    maxTemp = maxDailyTemp;
-    dailyDate = dailyForecastDate;
-    dailyCondition = dailyForecastCondition;
+      DarkThemeEnabled = darkThemeEnabled;
+      minTempinC = mindailytempinC;
+      maxTempinC = maxdailyempinC;
+      minTemp = minDailyTemp;
+      maxTemp = maxDailyTemp;
+      dailyDate = dailyForecastDate;
+      dailyCondition = dailyForecastCondition;
+      Pressure = pressure;
+      Humidity = humidity;
+      Wind = wind;
+      DailyForecastSunrise = dailyforcastsunrise;
+      DailyForecastSunset = dailyforecastsunset;
+      ForecastUvi = forecastuvi;
+      //Todo - apply visibility sunrise and sunset in these containers and make list of all these in location_screen
     });
   }
 
@@ -45,23 +113,19 @@ class _ForecastScreenState extends State<ForecastScreen> {
   Widget build(BuildContext context) {
     return SafeArea(
         child: Scaffold(
-         // backgroundColor: Color(0xFF18191A), //
           appBar: AppBar(
-         //   backgroundColor: Color(0xFFBB86FC), //
-          //  backgroundColor: Color.fromARGB(10,18,19,110),
             title: Text(
                 'Weather Forecast',
               style: TextStyle(
                 fontFamily: 'Poppins',
                 fontSize: 22,
-            //    color: Color(0xFFBB86FC),
               ),
             ),
             leading: IconButton(
               icon: Icon(
                 Icons.arrow_back,
               ),
-              iconSize: 22.0,
+              iconSize: 24.0,
               onPressed: () {
                 Navigator.pop(context);
               },
@@ -75,7 +139,9 @@ class _ForecastScreenState extends State<ForecastScreen> {
                 Align(
                   alignment: Alignment.centerLeft,
                   child: Padding(
-                    padding: const EdgeInsets.symmetric(vertical: 15.0,horizontal: 20.0),
+                    padding: const EdgeInsets.symmetric(
+                        vertical: 15.0, horizontal: 20.0,
+                    ),
                     child: Text(
                       'Next 7 days',
                       style: TextStyle(
@@ -91,6 +157,14 @@ class _ForecastScreenState extends State<ForecastScreen> {
                   minTemp: minTemp[0],
                   maxTemp: maxTemp[0],
                   dailyCondition: dailyCondition[0],
+                  dpressure: Pressure[0],
+                  dhumidity: Humidity[0],
+                  dwind: Wind[0],
+                  dforecastsunrise: DailyForecastSunrise[0],
+                  dforecastsunset: DailyForecastSunset[0],
+                  dforecastuvi: ForecastUvi[0],
+                  minTempinC: minTempinC[0],
+                  maxTempinC: maxTempinC[0],
                 ),
                 TileDivider(),
                 ExpandableWeatherTile(
@@ -99,6 +173,14 @@ class _ForecastScreenState extends State<ForecastScreen> {
                   minTemp: minTemp[1],
                   maxTemp: maxTemp[1],
                   dailyCondition: dailyCondition[1],
+                  dpressure: Pressure[1],
+                  dhumidity: Humidity[1],
+                  dwind: Wind[1],
+                  dforecastsunrise: DailyForecastSunrise[1],
+                  dforecastsunset: DailyForecastSunset[1],
+                  dforecastuvi: ForecastUvi[1],
+                  minTempinC: minTempinC[1],
+                  maxTempinC: maxTempinC[1],
                 ),
                 TileDivider(),
                 ExpandableWeatherTile(
@@ -107,6 +189,14 @@ class _ForecastScreenState extends State<ForecastScreen> {
                   minTemp: minTemp[2],
                   maxTemp: maxTemp[2],
                   dailyCondition: dailyCondition[2],
+                  dpressure: Pressure[2],
+                  dhumidity: Humidity[2],
+                  dwind: Wind[2],
+                  dforecastsunrise: DailyForecastSunrise[2],
+                  dforecastsunset: DailyForecastSunset[2],
+                  dforecastuvi: ForecastUvi[2],
+                  minTempinC: minTempinC[2],
+                  maxTempinC: maxTempinC[2],
                 ),
                 TileDivider(),
                 ExpandableWeatherTile(
@@ -115,6 +205,14 @@ class _ForecastScreenState extends State<ForecastScreen> {
                   minTemp: minTemp[3],
                   maxTemp: maxTemp[3],
                   dailyCondition: dailyCondition[3],
+                  dpressure: Pressure[3],
+                  dhumidity: Humidity[3],
+                  dwind: Wind[3],
+                  dforecastsunrise: DailyForecastSunrise[3],
+                  dforecastsunset: DailyForecastSunset[3],
+                  dforecastuvi: ForecastUvi[3],
+                  minTempinC: minTempinC[3],
+                  maxTempinC: maxTempinC[3],
                 ),
                 TileDivider(),
                 ExpandableWeatherTile(
@@ -123,6 +221,14 @@ class _ForecastScreenState extends State<ForecastScreen> {
                   minTemp: minTemp[4],
                   maxTemp: maxTemp[4],
                   dailyCondition: dailyCondition[4],
+                  dpressure: Pressure[4],
+                  dhumidity: Humidity[4],
+                  dwind: Wind[4],
+                  dforecastsunrise: DailyForecastSunrise[4],
+                  dforecastsunset: DailyForecastSunset[4],
+                  dforecastuvi: ForecastUvi[4],
+                  minTempinC: minTempinC[4],
+                  maxTempinC: maxTempinC[4],
                 ),
                 TileDivider(),
                 ExpandableWeatherTile(
@@ -131,6 +237,14 @@ class _ForecastScreenState extends State<ForecastScreen> {
                   minTemp: minTemp[5],
                   maxTemp: maxTemp[5],
                   dailyCondition: dailyCondition[5],
+                  dpressure: Pressure[5],
+                  dhumidity: Humidity[5],
+                  dwind: Wind[5],
+                  dforecastsunrise: DailyForecastSunrise[5],
+                  dforecastsunset: DailyForecastSunset[5],
+                  dforecastuvi: ForecastUvi[5],
+                  minTempinC: minTempinC[5],
+                  maxTempinC: maxTempinC[5],
                 ),
                 TileDivider(),
                 ExpandableWeatherTile(
@@ -139,6 +253,14 @@ class _ForecastScreenState extends State<ForecastScreen> {
                   minTemp: minTemp[6],
                   maxTemp: maxTemp[6],
                   dailyCondition: dailyCondition[6],
+                  dpressure: Pressure[6],
+                  dhumidity: Humidity[6],
+                  dwind: Wind[6],
+                  dforecastsunrise: DailyForecastSunrise[6],
+                  dforecastsunset: DailyForecastSunset[6],
+                  dforecastuvi: ForecastUvi[6],
+                  minTempinC: minTempinC[6],
+                  maxTempinC: maxTempinC[6],
                 ),
               ],
             ),
@@ -160,21 +282,41 @@ class TileDivider extends StatelessWidget {
 }
 
 class ExpandableWeatherTile extends StatelessWidget {
-  ExpandableWeatherTile({this.date,this.minTemp,this.maxTemp,this.dailyCondition,this.initiallyExpanded});
+  ExpandableWeatherTile({
+    this.date,
+    this.minTemp,
+    this.maxTemp,
+    this.dailyCondition,
+    this.initiallyExpanded,
+    this.dpressure,
+    this.dhumidity,
+    this.dwind,
+    this.dforecastsunrise,
+    this.dforecastsunset,
+    this.dforecastuvi,
+    this.minTempinC,
+    this.maxTempinC,
+  });
   final initiallyExpanded;
   final date;
   final minTemp;
   final maxTemp;
+  final minTempinC;
+  final maxTempinC;
   final dailyCondition;
+  final dpressure;
+  final dhumidity;
+  final dwind;
+  final dforecastsunrise;
+  final dforecastsunset;
+  final dforecastuvi;
   @override
   Widget build(BuildContext context) {
     return ExpansionTile(
       initiallyExpanded: initiallyExpanded,
-    backgroundColor: Theme.of(context).disabledColor,
-    //  backgroundColor: Colors.grey[100],
-    //  backgroundColor: Color(0xFF1E1E1E), //
+      backgroundColor: Theme.of(context).disabledColor,
       leading: BoxedIcon(
-      //  WeatherIcons.day_sunny,
+        //  WeatherIcons.day_sunny,
         dailyCondition,
         size: 27.0,
       ),
@@ -185,11 +327,13 @@ class ExpandableWeatherTile extends StatelessWidget {
             '$date',
             style: TextStyle(
               fontSize: 20.0,
+              fontWeight: FontWeight.w500,
             ),
           ),
-          Text('$minTemp°  /  $maxTemp° C',
+          Text(
+            '$minTemp°  /  $maxTemp°  ${changeUnit(maxTemp, maxTempinC)}',
             style: TextStyle(
-              fontSize: 16.0,
+              fontSize: 17.0,
               fontWeight: FontWeight.w500,
             ),
           ),
@@ -231,11 +375,11 @@ class ExpandableWeatherTile extends StatelessWidget {
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.end,
                   children: <Widget>[
-                    Text('6:50 AM'),
+                    Text('$dforecastsunrise'),
                     SizedBox(height: 10.0),
-                    Text('1015 hPa'),
+                    Text('$dpressure hPa'),
                     SizedBox(height: 10.0),
-                    Text('15 km/h'),
+                    Text('$dwind km/h'),
                     SizedBox(height: 10.0),
                   ],
                 ),
@@ -257,7 +401,7 @@ class ExpandableWeatherTile extends StatelessWidget {
                     ),
                     SizedBox(height: 10.0),
                     Text(
-                      'Visibility',
+                      'UVI',
                       style: TextStyle(
                         fontWeight: FontWeight.w500,
                       ),
@@ -268,11 +412,11 @@ class ExpandableWeatherTile extends StatelessWidget {
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.end,
                   children: <Widget>[
-                    Text('6:00 PM'),
+                    Text('$dforecastsunset'),
                     SizedBox(height: 10.0),
-                    Text('75 %'),
+                    Text('$dhumidity %'),
                     SizedBox(height: 10.0),
-                    Text('20 km'),
+                    Text('$dforecastuvi'),
                     SizedBox(height: 10.0),
                   ],
                 ),
@@ -283,4 +427,11 @@ class ExpandableWeatherTile extends StatelessWidget {
       ],
     );
   }
+}
+
+String changeUnit(var temp, var tempinc) {
+  if (temp == tempinc)
+    return 'C';
+  else
+    return 'F';
 }

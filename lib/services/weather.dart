@@ -3,6 +3,7 @@ import 'package:weather_app/services/location.dart';
 import 'package:weather_icons/weather_icons.dart';
 
 const apiKey = '1645cd387747d60c320d465f546474e6';
+const token = '700050914cc017cb38735082056a63b4e4020eee';
 
 class WeatherModel {
 
@@ -41,40 +42,17 @@ class WeatherModel {
     Location l = Location();
     await l.getCurrentLocation();
     NetworkHelper network = NetworkHelper(
-        'https://api.waqi.info/feed/geo:${l.latitude};${l.longitude}/?token=700050914cc017cb38735082056a63b4e4020eee');
+        'https://api.waqi.info/feed/geo:${l.latitude};${l.longitude}/?token=$token');
     var aqiData = await network.getData();
     return aqiData;
   }
 
   Future<dynamic> getCityAQI(dynamic nameOfCity) async {
     NetworkHelper network = NetworkHelper(
-        'https://api.waqi.info/feed/$nameOfCity/?token=700050914cc017cb38735082056a63b4e4020eee');
+        'https://api.waqi.info/feed/$nameOfCity/?token=$token');
     var aqiData = await network.getData();
     return aqiData;
   }
-  // Future<dynamic> getCityAQI(dynamic latitude,dynamic longitude) async {
-  //   NetworkHelper network = NetworkHelper(
-  //       'https://api.waqi.info/feed/geo:$latitude;$longitude/?token=700050914cc017cb38735082056a63b4e4020eee');
-  //   var aqiData = await network.getData();
-  //   return aqiData;
-  // }
-
-  // Future<dynamic> getCityForecast(dynamic cityName) async {
-  //   NetworkHelper network = NetworkHelper(
-  //       'https://api.openweathermap.org/data/2.5/forecast?q=$cityName&appid=$apiKey&units=metric');
-  //   var forecastData = await network.getData();
-  //   return forecastData;
-  // }
-  //
-  // Future<dynamic> getLocationForecast() async {
-  //   Location l = Location();
-  //   await l.getCurrentLocation();
-  //   NetworkHelper network = NetworkHelper(
-  //       'https://api.openweathermap.org/data/2.5/forecast?lat=${l
-  //           .latitude}&lon=${l.longitude}&appid=$apiKey&units=metric');
-  //   var forecastData = await network.getData();
-  //   return forecastData;
-  // }
 
   dynamic getWeatherIcon(int condition) {
     if (condition >= 200 && condition <= 232) {
@@ -102,5 +80,17 @@ class WeatherModel {
     } else if ( condition == 803 || condition == 804 ) {
       return WeatherIcons.cloudy;
     }
+  }
+  dynamic getuvIndex(var uvi) {
+    if (uvi <= 2)
+      return 'Low';
+    else if (uvi <= 5)
+      return 'Medium';
+    else if (uvi <= 7)
+      return 'High';
+    else if (uvi <= 10)
+      return 'Very high';
+    else
+      return 'Extremely high';
   }
 }
