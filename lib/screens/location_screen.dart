@@ -15,7 +15,8 @@ class LocationScreen extends StatefulWidget {
   final forecastData;
   final aqiData;
   final bool darkThemeEnabled;
-  LocationScreen(this.weatherData, this.forecastData, this.darkThemeEnabled, this.aqiData);
+  LocationScreen(
+      this.weatherData, this.forecastData, this.darkThemeEnabled, this.aqiData);
   @override
   _LocationScreenState createState() => _LocationScreenState();
 }
@@ -30,12 +31,12 @@ class _LocationScreenState extends State<LocationScreen> {
   var currentDate;
   // ignore: non_constant_identifier_names
   bool DarkThemeEnabled;
-  int tempinfarheneit;
-  int tempinCel;
+  int tempInFahrenheit;
+  int tempInCel;
   int pressure;
   int visibility;
   int humidity;
-  int windspeed;
+  int windSpeed;
   int aqi;
 
   var t = false;
@@ -53,26 +54,26 @@ class _LocationScreenState extends State<LocationScreen> {
   var suntime = new List();
   var suntimeIn12Hour = new List();
   var suntimeIn24Hour = new List();
-  var dailyForecastSunset = new List();
-  var dailyForecastSunrise = new List();
-  var dailyForecastSunsettime = new List();
-  var dailyForecastSunrisetime = new List();
+//  var dailyForecastSunset = new List();
+//  var dailyForecastSunrise = new List();
+  var dailyForecastSunsetTime = new List();
+  var dailyForecastSunriseTime = new List();
   var dailyForecastSunriseIn12Hour = new List();
   var dailyForecastSunriseIn24Hour = new List();
   var dailyForecastSunsetIn12Hour = new List();
   var dailyForecastSunsetIn24Hour = new List();
-  var tempForecastincel = new List();
-  var tempForecastinfar = new List();
-  var minDailyTempinC = new List();
-  var minDailyTempinF = new List();
-  var maxDailyTempinC = new List();
-  var maxDailyTempinF = new List();
+  var tempForecastInCel = new List();
+  var tempForecastInFar = new List();
+  var minDailyTempInC = new List();
+  var minDailyTempInF = new List();
+  var maxDailyTempInC = new List();
+  var maxDailyTempInF = new List();
   var forecastPressure = new List();
   var forecastHumidity = new List();
   var forecastWind = new List();
   var forecastVisibility = new List();
-  var forecastuvi = new List();
-  var forecastuviString = new List();
+  var forecastUvi = new List();
+  var forecastUviString = new List();
 
   WeatherModel weather = WeatherModel();
   GetTimeWeather timeWeather = GetTimeWeather();
@@ -96,14 +97,14 @@ class _LocationScreenState extends State<LocationScreen> {
         visibility = 0;
         pressure = 0;
         humidity = 0;
-        windspeed = 0;
+        windSpeed = 0;
         feelsLike = 0;
         return;
       }
       var temp = weatherData['main']['temp'];
       temperature = temp.toInt();
-      tempinCel = temperature;
-      tempinfarheneit = (1.8 * temperature + 32).toInt();
+      tempInCel = temperature;
+      tempInFahrenheit = (1.8 * temperature + 32).toInt();
       weatherIcon = weather.getWeatherIcon(weatherData['weather'][0]['id']);
       cityName = weatherData['name'];
       var feelsLikeTemp = weatherData['main']['feels_like'];
@@ -117,7 +118,7 @@ class _LocationScreenState extends State<LocationScreen> {
       visibility = weatherData['visibility'];
       humidity = weatherData['main']['humidity'];
       var wind = weatherData['wind']['speed'];
-      windspeed = wind.toInt();
+      windSpeed = wind.toInt();
       // for(int i=0;i<24;i+=2)
       // {
       //   timeInEpoch.add(forecastData['hourly'][i]['dt']);
@@ -257,7 +258,7 @@ class _LocationScreenState extends State<LocationScreen> {
         forecastData['current']['sunrise'],
         forecastData['current']['sunset'],
       ];
-      dailyForecastSunrise = [
+      var dailyForecastSunrise = [
         forecastData['daily'][1]['sunrise'],
         forecastData['daily'][2]['sunrise'],
         forecastData['daily'][3]['sunrise'],
@@ -267,7 +268,7 @@ class _LocationScreenState extends State<LocationScreen> {
         forecastData['daily'][7]['sunrise'],
       ];
 
-      dailyForecastSunset = [
+      var dailyForecastSunset = [
         forecastData['daily'][1]['sunset'],
         forecastData['daily'][2]['sunset'],
         forecastData['daily'][3]['sunset'],
@@ -349,32 +350,32 @@ class _LocationScreenState extends State<LocationScreen> {
         timeWeather.getTimeIn24HourFormat(suntimeInEpoch[0], timezoneOffset),
         timeWeather.getTimeIn24HourFormat(suntimeInEpoch[1], timezoneOffset),
       ];
-      tempForecastincel = tempForecast;
-      tempForecastinfar = [
-        changetemp(tempForecast[0]).toInt(),
-        changetemp(tempForecast[1]).toInt(),
-        changetemp(tempForecast[2]).toInt(),
-        changetemp(tempForecast[3]).toInt(),
-        changetemp(tempForecast[4]).toInt(),
-        changetemp(tempForecast[5]).toInt(),
-        changetemp(tempForecast[6]).toInt(),
-        changetemp(tempForecast[7]).toInt(),
-        changetemp(tempForecast[8]).toInt(),
-        changetemp(tempForecast[9]).toInt(),
-        changetemp(tempForecast[10]).toInt(),
-        changetemp(tempForecast[11]).toInt(),
+      tempForecastInCel = tempForecast;
+      tempForecastInFar = [
+        changeTemp(tempForecast[0]).toInt(),
+        changeTemp(tempForecast[1]).toInt(),
+        changeTemp(tempForecast[2]).toInt(),
+        changeTemp(tempForecast[3]).toInt(),
+        changeTemp(tempForecast[4]).toInt(),
+        changeTemp(tempForecast[5]).toInt(),
+        changeTemp(tempForecast[6]).toInt(),
+        changeTemp(tempForecast[7]).toInt(),
+        changeTemp(tempForecast[8]).toInt(),
+        changeTemp(tempForecast[9]).toInt(),
+        changeTemp(tempForecast[10]).toInt(),
+        changeTemp(tempForecast[11]).toInt(),
       ];
-      minDailyTempinC = minDailyTemp;
-      minDailyTempinF = [
-        changetemp(minDailyTemp[0]).toInt(),
-        changetemp(minDailyTemp[1]).toInt(),
-        changetemp(minDailyTemp[2]).toInt(),
-        changetemp(minDailyTemp[3]).toInt(),
-        changetemp(minDailyTemp[4]).toInt(),
-        changetemp(minDailyTemp[5]).toInt(),
-        changetemp(minDailyTemp[6]).toInt(),
+      minDailyTempInC = minDailyTemp;
+      minDailyTempInF = [
+        changeTemp(minDailyTemp[0]).toInt(),
+        changeTemp(minDailyTemp[1]).toInt(),
+        changeTemp(minDailyTemp[2]).toInt(),
+        changeTemp(minDailyTemp[3]).toInt(),
+        changeTemp(minDailyTemp[4]).toInt(),
+        changeTemp(minDailyTemp[5]).toInt(),
+        changeTemp(minDailyTemp[6]).toInt(),
       ];
-      forecastuvi = [
+      forecastUvi = [
         forecastData['daily'][1]['uvi'],
         forecastData['daily'][2]['uvi'],
         forecastData['daily'][3]['uvi'],
@@ -383,24 +384,24 @@ class _LocationScreenState extends State<LocationScreen> {
         forecastData['daily'][6]['uvi'],
         forecastData['daily'][7]['uvi'],
       ];
-      forecastuviString = [
-        weather.getuvIndex(forecastuvi[0]),
-        weather.getuvIndex(forecastuvi[1]),
-        weather.getuvIndex(forecastuvi[2]),
-        weather.getuvIndex(forecastuvi[3]),
-        weather.getuvIndex(forecastuvi[4]),
-        weather.getuvIndex(forecastuvi[5]),
-        weather.getuvIndex(forecastuvi[6]),
+      forecastUviString = [
+        weather.getuvIndex(forecastUvi[0]),
+        weather.getuvIndex(forecastUvi[1]),
+        weather.getuvIndex(forecastUvi[2]),
+        weather.getuvIndex(forecastUvi[3]),
+        weather.getuvIndex(forecastUvi[4]),
+        weather.getuvIndex(forecastUvi[5]),
+        weather.getuvIndex(forecastUvi[6]),
       ];
-      maxDailyTempinC = maxDailyTemp;
-      maxDailyTempinF = [
-        changetemp(maxDailyTemp[0]).toInt(),
-        changetemp(maxDailyTemp[1]).toInt(),
-        changetemp(maxDailyTemp[2]).toInt(),
-        changetemp(maxDailyTemp[3]).toInt(),
-        changetemp(maxDailyTemp[4]).toInt(),
-        changetemp(maxDailyTemp[5]).toInt(),
-        changetemp(maxDailyTemp[6]).toInt(),
+      maxDailyTempInC = maxDailyTemp;
+      maxDailyTempInF = [
+        changeTemp(maxDailyTemp[0]).toInt(),
+        changeTemp(maxDailyTemp[1]).toInt(),
+        changeTemp(maxDailyTemp[2]).toInt(),
+        changeTemp(maxDailyTemp[3]).toInt(),
+        changeTemp(maxDailyTemp[4]).toInt(),
+        changeTemp(maxDailyTemp[5]).toInt(),
+        changeTemp(maxDailyTemp[6]).toInt(),
       ];
       forecastPressure = [
         (forecastData['daily'][1]['pressure']).toInt(),
@@ -439,649 +440,492 @@ class _LocationScreenState extends State<LocationScreen> {
       if (is24HoursFormat) {
         time = timeIn24Hour;
         suntime = suntimeIn24Hour;
-        dailyForecastSunrise = dailyForecastSunriseIn24Hour;
-        dailyForecastSunset = dailyForecastSunsetIn24Hour;
+        dailyForecastSunriseTime = dailyForecastSunriseIn24Hour;
+        dailyForecastSunsetTime = dailyForecastSunsetIn24Hour;
       } else {
         time = timeIn12Hour;
         suntime = suntimeIn12Hour;
-        dailyForecastSunrisetime = dailyForecastSunriseIn12Hour;
-        dailyForecastSunsettime = dailyForecastSunsetIn12Hour;
+        dailyForecastSunriseTime = dailyForecastSunriseIn12Hour;
+        dailyForecastSunsetTime = dailyForecastSunsetIn12Hour;
       }
     });
     return Scaffold(
-        //  backgroundColor: Color(0xFF18191A), //
-        appBar: AppBar(
-          title: Text(
-              "Weather",
-            style: TextStyle(
-              fontFamily: 'Poppins',
-              fontSize: 22,
+      //  backgroundColor: Color(0xFF18191A), //
+      appBar: AppBar(
+        title: Text(
+          "Weather",
+          style: TextStyle(
+            fontFamily: 'Poppins',
+            fontSize: 22,
+          ),
+        ),
+        centerTitle: true,
+        actions: <Widget>[
+          FlatButton(
+            onPressed: () async {
+              var typedCityName = await Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) {
+                    return CityScreen();
+                  },
+                ),
+              );
+              if (typedCityName != null) {
+                var weatherData = await weather.getCityWeather(typedCityName);
+                if (weatherData == null) {
+                  Alert(
+                    context: context,
+                    type: AlertType.error,
+                    style: AlertStyle(
+                      animationType: AnimationType.fromTop,
+                      descStyle: TextStyle(
+                        color: Colors.black,
+                        fontWeight: FontWeight.w400,
+                      ),
+                      backgroundColor: Colors.white,
+                      titleStyle: TextStyle(
+                        color: Colors.black,
+                      ),
+                    ),
+                    title: 'ERROR ALERT',
+                    desc: "Wrong city name entered",
+                    buttons: [
+                      DialogButton(
+                        child: Text(
+                          "OK",
+                          style: TextStyle(
+                            color: Colors.black,
+                            fontSize: 20,
+                          ),
+                        ),
+                        onPressed: () => Navigator.pop(context),
+                        width: 120,
+                      )
+                    ],
+                  ).show();
+                }
+                var latitude = weatherData['coord']['lat'];
+                var longitude = weatherData['coord']['lon'];
+                var forecastData =
+                    await weather.getCityForecast(latitude, longitude);
+                // var aqiData = await weather.getCityAQI(typedCityName);
+                var aqiData = await weather.getCityAQI(latitude, longitude);
+                updateUI(weatherData, forecastData, aqiData);
+              }
+            },
+            child: Icon(
+              Icons.search,
+              size: 28.0,
+              color: Colors.white,
             ),
           ),
-          centerTitle: true,
-          actions: <Widget>[
+        ],
+      ),
+      drawer: Drawer(
+        child: ListView(
+          children: <Widget>[
+            SizedBox(height: 12.0),
             FlatButton(
               onPressed: () async {
-                var typedCityName = await Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) {
-                      return CityScreen();
-                    },
-                  ),
-                );
-                if (typedCityName != null) {
-                  var weatherData =
-                  await weather.getCityWeather(typedCityName);
-                  if (weatherData == null) {
-                    Alert(
-                      context: context,
-                      type: AlertType.error,
-                      style: AlertStyle(
-                        animationType: AnimationType.fromTop,
-                        descStyle: TextStyle(
-                          color: Colors.black,
-                          fontWeight: FontWeight.w400,
-                        ),
-                        backgroundColor: Colors.white,
-                        titleStyle: TextStyle(
-                          color: Colors.black,
-                        ),
-                      ),
-                      title: 'ERROR ALERT',
-                      desc: "Wrong city name entered",
-                      buttons: [
-                        DialogButton(
-                          child: Text(
-                            "OK",
-                            style: TextStyle(
-                              color: Colors.black,
-                              fontSize: 20,
-                            ),
-                          ),
-                          onPressed: () => Navigator.pop(context),
-                          width: 120,
-                        )
-                      ],
-                    ).show();
-                  }
-                  var latitude = weatherData['coord']['lat'];
-                  var longitude = weatherData['coord']['lon'];
-                  var forecastData =
-                  await weather.getCityForecast(latitude, longitude);
-                 // var aqiData = await weather.getCityAQI(typedCityName);
-                   var aqiData = await weather.getCityAQI(latitude, longitude);
-                  updateUI(weatherData, forecastData, aqiData);
-                }
+                var weatherData = await weather.getLocationWeather();
+                var forecastData = await weather.getLocationForecast();
+                var aqiData = await weather.getLocationAQI();
+                Navigator.of(context).pop();
+                updateUI(weatherData, forecastData, aqiData);
               },
-              child: Icon(
-                Icons.search,
-                size: 28.0,
-                color: Colors.white,
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text(
+                    'Current Location',
+                    style: TextStyle(
+                      fontWeight: FontWeight.bold,
+                      fontSize: 17,
+                      color: Theme.of(context).accentIconTheme.color,
+                    ),
+                  ),
+                  Icon(
+                    Icons.near_me,
+                    size: 30.0,
+                  ),
+                ],
+              ),
+            ),
+            Divider(
+              height: 5,
+              thickness: 1,
+              indent: 10,
+              endIndent: 10,
+              color: Colors.grey,
+            ),
+            ListTile(
+              title: Text(
+                'Celsius to Fahrenheit',
+                style: TextStyle(
+                  fontWeight: FontWeight.bold,
+                  fontSize: 17,
+                  color: Theme.of(context).accentIconTheme.color,
+                ),
+              ),
+              trailing: Switch(
+                value: t,
+                onChanged: (value) {
+                  setState(() {
+                    t = value;
+                    if (t == true) {
+                      temperature = tempInFahrenheit;
+                      tempForecast = tempForecastInFar;
+                      minDailyTemp = minDailyTempInF;
+                      maxDailyTemp = maxDailyTempInF;
+                    } else {
+                      temperature = tempInCel;
+                      tempForecast = tempForecastInCel;
+                      minDailyTemp = minDailyTempInC;
+                      maxDailyTemp = maxDailyTempInC;
+                    }
+                  });
+                },
+              ),
+            ),
+            Divider(
+              thickness: 1,
+              indent: 10,
+              endIndent: 20,
+              color: Colors.grey,
+            ),
+            ListTile(
+              title: Text(
+                "Dark Theme",
+                style: TextStyle(
+                  fontWeight: FontWeight.bold,
+                  fontSize: 17,
+                ),
+              ),
+              trailing: Switch(
+                value: DarkThemeEnabled,
+                onChanged: (value) {
+                  setState(() {
+                    DarkThemeEnabled = value;
+                  });
+                  bloc.changeTheme(DarkThemeEnabled);
+                  //  print(bloc.changeTheme);
+                },
               ),
             ),
           ],
         ),
-        drawer: Drawer(
+      ),
+      body: SafeArea(
+        child: Container(
+          height: MediaQuery.of(context).size.height,
+          width: MediaQuery.of(context).size.width,
           child: ListView(
+            // mainAxisAlignment: MainAxisAlignment.start,
+            // crossAxisAlignment: CrossAxisAlignment.stretch,
+            physics: const AlwaysScrollableScrollPhysics(),
+            //   physics: ClampingScrollPhysics(),
+            //  shrinkWrap: true,
             children: <Widget>[
-              SizedBox(height: 12.0),
-              // FlatButton(
-              //   onPressed: () async {
-              //     var typedCityName = await Navigator.push(
-              //       context,
-              //       MaterialPageRoute(
-              //         builder: (context) {
-              //           return CityScreen();
-              //         },
-              //       ),
-              //     );
-              //     Navigator.of(context).pop();
-              //     if (typedCityName != null) {
-              //       var weatherData = await weather.getCityWeather(typedCityName);
-              //       if (weatherData == null) {
-              //         Alert(
-              //           context: context,
-              //           type: AlertType.error,
-              //           style: AlertStyle(
-              //             animationType: AnimationType.fromTop,
-              //             descStyle: TextStyle(
-              //               color: Colors.black,
-              //               fontWeight: FontWeight.w400,
-              //             ),
-              //             backgroundColor: Colors.white,
-              //             titleStyle: TextStyle(
-              //               color: Colors.black,
-              //             ),
-              //           ),
-              //           title: 'ERROR ALERT',
-              //           desc: "Wrong city name entered",
-              //           buttons: [
-              //             DialogButton(
-              //               child: Text(
-              //                 "OK",
-              //                 style: TextStyle(
-              //                   color: Colors.black,
-              //                   fontSize: 20,
-              //                 ),
-              //               ),
-              //               onPressed: () => Navigator.pop(context),
-              //               width: 120,
-              //             )
-              //           ],
-              //         ).show();
-              //       }
-              //       var latitude = weatherData['coord']['lat'];
-              //       var longitude = weatherData['coord']['lon'];
-              //       var forecastData =
-              //       await weather.getCityForecast(latitude, longitude);
-              //       var aqiData = await weather.getCityAQI(typedCityName);
-              //       updateUI(weatherData, forecastData, aqiData);
-              //     }
-              //   },
-              //   child: Row(
-              //     mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              //     children: [
-              //       Text(
-              //         'Search another city',
-              //         style: TextStyle(
-              //           fontWeight: FontWeight.bold,
-              //           fontSize: 17,
-              //           color: Theme.of(context).accentIconTheme.color,
-              //         ),
-              //       ),
-              //       Icon(
-              //         Icons.search,
-              //         size: 30.0,
-              //       ),
-              //     ],
-              //   ),
-              // ),
-              // Divider(
-              //   height: 5,
-              //   thickness: 1,
-              //   indent: 10,
-              //   endIndent: 20,
-              //   color: Colors.grey,
-              // ),
-              FlatButton(
-                onPressed: () async {
-                  var weatherData = await weather.getLocationWeather();
-                  var forecastData = await weather.getLocationForecast();
-                  var aqiData = await weather.getLocationAQI();
-                  Navigator.of(context).pop();
-                  updateUI(weatherData, forecastData, aqiData);
-                },
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
+              SizedBox(
+                height: 27.0,
+              ),
+              Container(
+                height: MediaQuery.of(context).size.height / 7,
+                width: MediaQuery.of(context).size.width / 6,
+                child: ListView(
+                  physics: NeverScrollableScrollPhysics(),
+                  children: <Widget>[
                     Text(
-                      'Current Location',
+                      '$cityName',
+                      textAlign: TextAlign.center,
                       style: TextStyle(
                         fontWeight: FontWeight.bold,
-                        fontSize: 17,
-                        color: Theme.of(context).accentIconTheme.color,
+                        fontFamily: 'Poppins',
+                        fontSize: 38.0,
                       ),
-                    ),
-                    Icon(
-                      Icons.near_me,
-                      size: 30.0,
                     ),
                   ],
                 ),
               ),
-              Divider(
-                height: 5,
-                thickness: 1,
-                indent: 10,
-                endIndent: 10,
-                color: Colors.grey,
-              ),
-              ListTile(
-                title: Text(
-                      'Celsius to Fahrenheit',
-                      style: TextStyle(
-                        fontWeight: FontWeight.bold,
-                        fontSize: 17,
-                        color: Theme.of(context).accentIconTheme.color,
-                      ),
-                    ),
-                trailing: Switch(
-                      value: t,
-                      onChanged: (value) {
-                        setState(() {
-                          t = value;
-                          if (t == true) {
-                            temperature = tempinfarheneit;
-                            tempForecast = tempForecastinfar;
-                            minDailyTemp = minDailyTempinF;
-                            maxDailyTemp = maxDailyTempinF;
-                          } else {
-                            temperature = tempinCel;
-                            tempForecast = tempForecastincel;
-                            minDailyTemp = minDailyTempinC;
-                            maxDailyTemp = maxDailyTempinC;
-                          }
-                        });
-                      },
-                    ),
-                ),
-              Divider(
-                thickness: 1,
-                indent: 10,
-                endIndent: 20,
-                color: Colors.grey,
-              ),
-              ListTile(
-                title: Text(
-                    "Dark Theme",
-                  style: TextStyle(
-                    fontWeight: FontWeight.bold,
-                  fontSize: 17,
-                  ),
-                ),
-                trailing: Switch(
-                  value: DarkThemeEnabled,
-                  onChanged: (value) {
-                    setState(() {
-                      DarkThemeEnabled = value;
-                    });
-                    bloc.changeTheme(DarkThemeEnabled);
-                  //  print(bloc.changeTheme);
-                  },
-                ),
-              ),
-            ],
-          ),
-        ),
-        body: SafeArea(
-          child: Container(
-            height: MediaQuery.of(context).size.height,
-            width: MediaQuery.of(context).size.width,
-            child: ListView(
-             // mainAxisAlignment: MainAxisAlignment.start,
-             // crossAxisAlignment: CrossAxisAlignment.stretch,
-              physics: const AlwaysScrollableScrollPhysics(),
-        //   physics: ClampingScrollPhysics(),
-         //  shrinkWrap: true,
-              children: <Widget>[
-                // Row(
-                //   mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                //   children: <Widget>[
-                //     FlatButton(
-                //       onPressed: () async {
-                //         var weatherData = await weather.getLocationWeather();
-                //         var forecastData = await weather.getLocationForecast();
-                //         var aqiData = await weather.getLocationAQI();
-                //         updateUI(weatherData, forecastData, aqiData);
-                //       },
-                //       child: Icon(
-                //         Icons.near_me,
-                //         size: 40.0,
-                //         //   color: Theme.of(context).accentIconTheme.color,
-                //       ),
-                //     ),
-                //     FlatButton(
-                //       onPressed: () async {
-                //         var typedCityName = await Navigator.push(
-                //           context,
-                //           MaterialPageRoute(
-                //             builder: (context) {
-                //               return CityScreen();
-                //             },
-                //           ),
-                //         );
-                //         if (typedCityName != null) {
-                //           var weatherData =
-                //               await weather.getCityWeather(typedCityName);
-                //           if (weatherData == null) {
-                //             Alert(
-                //               context: context,
-                //               type: AlertType.error,
-                //               style: AlertStyle(
-                //                 animationType: AnimationType.fromTop,
-                //                 descStyle: TextStyle(
-                //                   color: Colors.black,
-                //                   fontWeight: FontWeight.w400,
-                //                 ),
-                //                 backgroundColor: Colors.white,
-                //                 titleStyle: TextStyle(
-                //                   color: Colors.black,
-                //                 ),
-                //               ),
-                //               title: 'ERROR ALERT',
-                //               desc: "Wrong city name entered",
-                //               buttons: [
-                //                 DialogButton(
-                //                   child: Text(
-                //                     "OK",
-                //                     style: TextStyle(
-                //                         color: Colors.black,
-                //                         fontSize: 20,
-                //                     ),
-                //                   ),
-                //                   onPressed: () => Navigator.pop(context),
-                //                   width: 120,
-                //                 )
-                //               ],
-                //             ).show();
-                //           }
-                //           var latitude = weatherData['coord']['lat'];
-                //           var longitude = weatherData['coord']['lon'];
-                //           var forecastData =
-                //               await weather.getCityForecast(latitude, longitude);
-                //          var aqiData = await weather.getCityAQI(typedCityName);
-                //          // var aqiData = await weather.getCityAQI(latitude, longitude);
-                //           updateUI(weatherData, forecastData, aqiData);
-                //         }
-                //       },
-                //       child: Icon(
-                //          Icons.location_city,
-                //      //   Icons.add_location,
-                //      //  Icons.location_searching,
-                //         size: 40.0,
-                //         //   color: Theme.of(context).accentIconTheme.color,
-                //       ),
-                //     ),
-                //   ],
-                // ),
-                SizedBox(
-                  height: 27.0,
-                ),
-                Container(
-                  height: MediaQuery.of(context).size.height/7,
-                  width: MediaQuery.of(context).size.width/6,
-                  child: ListView(
-                    physics: NeverScrollableScrollPhysics(),
-                    children: <Widget>[
-                      Text(
-                        '$cityName',
+              Container(
+                height: MediaQuery.of(context).size.height * 0.15,
+                width: MediaQuery.of(context).size.width / 6,
+                child: ListView(
+                  physics: NeverScrollableScrollPhysics(),
+                  children: <Widget>[
+                    Align(
+                      alignment: Alignment.topCenter,
+                      child: Text(
+                        '$currentDate',
                         textAlign: TextAlign.center,
                         style: TextStyle(
-                          fontWeight: FontWeight.bold,
-                          fontFamily: 'Poppins',
-                          fontSize: 38.0,
+                          fontSize: 19.0,
                         ),
                       ),
-                    ],
-                  ),
-                ),
-                Container(
-                  height: MediaQuery.of(context).size.height*0.15,
-                  width: MediaQuery.of(context).size.width/6,
-                  child: ListView(
-                    physics: NeverScrollableScrollPhysics(),
-                    children: <Widget>[
-                      Align(
-                        alignment: Alignment.topCenter,
-                        child: Text(
-                          '$currentDate',
-                          textAlign: TextAlign.center,
-                          style: TextStyle(
-                            fontSize: 19.0,
-                          ),
-                        ),
-                      ),
-                      SizedBox(
-                        height: 15.0,
-                      ),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        children: <Widget>[
-                          Align(
-                            alignment: Alignment.topCenter,
-                            child: Text(
-                              '   AQI',
-                              textAlign: TextAlign.center,
-                              style: TextStyle(
-                                fontSize: 23.0,
-                              ),
-                            ),
-                          ),
-                          FlatButton(
-                            materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
-                            child: Text(
-                              '$aqi',
-                           //   textAlign: TextAlign.center,
-                              style: TextStyle(
-                                decoration: TextDecoration.underline,
-                                color: Theme.of(context).accentIconTheme.color,
-                                fontSize: 23.0,
-                              ),
-                            ),
-                            onPressed: () {
-                              Navigator.push(
-                                context,
-                                MaterialPageRoute(builder: (context) {
-                                  return AQIScreen(aqi,cityName);
-                              }),
-                              );
-                            },
-                          ),
-                        ],
-                      ),
-                    ],
-                  ),
-                ),
-                Container(
-                  height: MediaQuery.of(context).size.height/4,
-                  width: MediaQuery.of(context).size.width/4,
-                  child: ListView(
-                    // mainAxisAlignment: MainAxisAlignment.start,
-                    children: <Widget>[
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: <Widget>[
-                          Text(
-                            '$temperature°',
-                            style: kTempTextStyle,
-                          ),
-                          Align(
-                            alignment: Alignment.center,
-                            child: BoxedIcon(
-                              weatherIcon,
-                              size: 80.0,
-                            ),
-                          ),
-                        ],
-                      ),
-                      Text(
-                        '$condition',
-                        textAlign: TextAlign.center,
-                        style: TextStyle(
-                          fontSize: 25.0,
-                          fontFamily: 'Poppins',
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-                SizedBox(
-                  height: 20.0,
-                ),
-                Container(
-                  height: MediaQuery.of(context).size.height*0.3,
-                  width: MediaQuery.of(context).size.width/3,
-                  child: ListView(
-                    physics: NeverScrollableScrollPhysics(),
-                    children: <Widget>[
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceAround,
-                        children: <Widget>[
-                          Text(
-                            'Today',
+                    ),
+                    SizedBox(
+                      height: 15.0,
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: <Widget>[
+                        Align(
+                          alignment: Alignment.topCenter,
+                          child: Text(
+                            '   AQI',
+                            textAlign: TextAlign.center,
                             style: TextStyle(
+                              fontSize: 23.0,
+                            ),
+                          ),
+                        ),
+                        FlatButton(
+                          materialTapTargetSize:
+                              MaterialTapTargetSize.shrinkWrap,
+                          child: Text(
+                            '$aqi',
+                            //   textAlign: TextAlign.center,
+                            style: TextStyle(
+                              decoration: TextDecoration.underline,
+                              color: Theme.of(context).accentIconTheme.color,
+                              fontSize: 23.0,
+                            ),
+                          ),
+                          onPressed: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(builder: (context) {
+                                return AQIScreen(aqi, cityName);
+                              }),
+                            );
+                          },
+                        ),
+                      ],
+                    ),
+                  ],
+                ),
+              ),
+              Container(
+                height: MediaQuery.of(context).size.height / 4,
+                width: MediaQuery.of(context).size.width / 4,
+                child: ListView(
+                  // mainAxisAlignment: MainAxisAlignment.start,
+                  children: <Widget>[
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: <Widget>[
+                        Text(
+                          '$temperature°',
+                          style: kTempTextStyle,
+                        ),
+                        Align(
+                          alignment: Alignment.center,
+                          child: BoxedIcon(
+                            weatherIcon,
+                            size: 80.0,
+                          ),
+                        ),
+                      ],
+                    ),
+                    Text(
+                      '$condition',
+                      textAlign: TextAlign.center,
+                      style: TextStyle(
+                        fontSize: 25.0,
+                        fontFamily: 'Poppins',
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              SizedBox(
+                height: 20.0,
+              ),
+              Container(
+                height: MediaQuery.of(context).size.height * 0.3,
+                width: MediaQuery.of(context).size.width / 3,
+                child: ListView(
+                  physics: NeverScrollableScrollPhysics(),
+                  children: <Widget>[
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceAround,
+                      children: <Widget>[
+                        Text(
+                          'Today',
+                          style: TextStyle(
+                            fontSize: 17.0,
+                            fontFamily: 'Poppins',
+                          ),
+                        ),
+                        FlatButton(
+                          materialTapTargetSize:
+                              MaterialTapTargetSize.shrinkWrap,
+                          child: Text(
+                            'Next 7 Days >',
+                            style: TextStyle(
+                              //     color: Colors.tealAccent,
+                              //   color: Colors.blue,
                               fontSize: 17.0,
                               fontFamily: 'Poppins',
                             ),
                           ),
-                          FlatButton(
-                            materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
-                            child: Text(
-                              'Next 7 Days >',
-                              style: TextStyle(
-                                //     color: Colors.tealAccent,
-                                //   color: Colors.blue,
-                                fontSize: 17.0,
-                                fontFamily: 'Poppins',
-                              ),
-                            ),
-                            onPressed: () {
-                              Navigator.push(context,
-                                  MaterialPageRoute(builder: (context) {
-                                return ForecastScreen(
-                                  dailyForecastCondition: dailyForecastCondition,
-                                  minDailyTemp: minDailyTemp,
-                                  maxDailyTemp: maxDailyTemp,
-                                  dailyForecastDate: dailyForecastDate,
-                                  pressure: forecastPressure,
-                                  humidity: forecastHumidity,
-                                  wind: forecastWind,
-                                  forecastdailysunrise: dailyForecastSunrisetime,
-                                  forecastdailysunset: dailyForecastSunsettime,
-                                  forecastuvi: forecastuviString,
-                                  minDailyTempinC: minDailyTempinC,
-                                  maxDailyTempinC: maxDailyTempinC,
-                                  darkThemeEnabled: DarkThemeEnabled,
-                                );
-                              }));
-                            },
+                          onPressed: () {
+                            Navigator.push(context,
+                                MaterialPageRoute(builder: (context) {
+                              return ForecastScreen(
+                                dailyForecastCondition: dailyForecastCondition,
+                                minDailyTemp: minDailyTemp,
+                                maxDailyTemp: maxDailyTemp,
+                                dailyForecastDate: dailyForecastDate,
+                                pressure: forecastPressure,
+                                humidity: forecastHumidity,
+                                wind: forecastWind,
+                                forecastDailySunrise: dailyForecastSunriseTime,
+                                forecastDailySunset: dailyForecastSunsetTime,
+                                forecastUvi: forecastUviString,
+                                minDailyTempInC: minDailyTempInC,
+                                maxDailyTempInC: maxDailyTempInC,
+                                darkThemeEnabled: DarkThemeEnabled,
+                              );
+                            }));
+                          },
+                        ),
+                      ],
+                    ),
+                    Divider(
+                      height: 20,
+                      thickness: 3,
+                      indent: 10,
+                      endIndent: 10,
+                    ),
+                    Container(
+                      margin: EdgeInsets.symmetric(vertical: 5.0),
+                      height: 105.0,
+                      child: ListView(
+                        scrollDirection: Axis.horizontal,
+                        children: <Widget>[
+                          SizedBox(
+                            width: 10.0,
+                          ),
+                          HourlyForecastBox(
+                            time: time[0],
+                            forecastCondition: forecastCondition[0],
+                            tempForecast: tempForecast[0],
+                            tempInC: tempForecastInCel[0],
+                          ),
+                          SizedBox(
+                            width: 20.0,
+                          ),
+                          HourlyForecastBox(
+                            time: time[1],
+                            forecastCondition: forecastCondition[1],
+                            tempForecast: tempForecast[1],
+                            tempInC: tempForecastInCel[1],
+                          ),
+                          SizedBox(
+                            width: 20.0,
+                          ),
+                          HourlyForecastBox(
+                            time: time[2],
+                            forecastCondition: forecastCondition[2],
+                            tempForecast: tempForecast[2],
+                            tempInC: tempForecastInCel[2],
+                          ),
+                          SizedBox(
+                            width: 20.0,
+                          ),
+                          HourlyForecastBox(
+                            time: time[3],
+                            forecastCondition: forecastCondition[3],
+                            tempForecast: tempForecast[3],
+                            tempInC: tempForecastInCel[3],
+                          ),
+                          SizedBox(
+                            width: 20.0,
+                          ),
+                          HourlyForecastBox(
+                            time: time[4],
+                            forecastCondition: forecastCondition[4],
+                            tempForecast: tempForecast[4],
+                            tempInC: tempForecastInCel[4],
+                          ),
+                          SizedBox(
+                            width: 20.0,
+                          ),
+                          HourlyForecastBox(
+                            time: time[5],
+                            forecastCondition: forecastCondition[5],
+                            tempForecast: tempForecast[5],
+                            tempInC: tempForecastInCel[5],
+                          ),
+                          SizedBox(
+                            width: 20.0,
+                          ),
+                          HourlyForecastBox(
+                            time: time[6],
+                            forecastCondition: forecastCondition[6],
+                            tempForecast: tempForecast[6],
+                            tempInC: tempForecastInCel[6],
+                          ),
+                          SizedBox(
+                            width: 20.0,
+                          ),
+                          HourlyForecastBox(
+                            time: time[7],
+                            forecastCondition: forecastCondition[7],
+                            tempForecast: tempForecast[7],
+                            tempInC: tempForecastInCel[7],
+                          ),
+                          SizedBox(
+                            width: 20.0,
+                          ),
+                          HourlyForecastBox(
+                            time: time[8],
+                            forecastCondition: forecastCondition[8],
+                            tempForecast: tempForecast[8],
+                            tempInC: tempForecastInCel[8],
+                          ),
+                          SizedBox(
+                            width: 20.0,
+                          ),
+                          HourlyForecastBox(
+                            time: time[9],
+                            forecastCondition: forecastCondition[9],
+                            tempForecast: tempForecast[9],
+                            tempInC: tempForecastInCel[9],
+                          ),
+                          SizedBox(
+                            width: 20.0,
+                          ),
+                          HourlyForecastBox(
+                            time: time[10],
+                            forecastCondition: forecastCondition[10],
+                            tempForecast: tempForecast[10],
+                            tempInC: tempForecastInCel[10],
+                          ),
+                          SizedBox(
+                            width: 20.0,
+                          ),
+                          HourlyForecastBox(
+                            time: time[11],
+                            forecastCondition: forecastCondition[11],
+                            tempForecast: tempForecast[11],
+                            tempInC: tempForecastInCel[11],
                           ),
                         ],
                       ),
-                      Divider(
-                        height: 20,
-                        thickness: 3,
-                        indent: 10,
-                        endIndent: 10,
-                      ),
-                      Container(
-                        margin: EdgeInsets.symmetric(vertical: 5.0),
-                        height: 105.0,
-                        child: ListView(
-                          scrollDirection: Axis.horizontal,
-                          children: <Widget>[
-                            SizedBox(
-                              width: 10.0,
-                            ),
-                            HourlyForecastBox(
-                              time: time[0],
-                              forecastCondition: forecastCondition[0],
-                              tempForecast: tempForecast[0],
-                              tempinC: tempForecastincel[0],
-                            ),
-                            SizedBox(
-                              width: 20.0,
-                            ),
-                            HourlyForecastBox(
-                              time: time[1],
-                              forecastCondition: forecastCondition[1],
-                              tempForecast: tempForecast[1],
-                              tempinC: tempForecastincel[1],
-                            ),
-                            SizedBox(
-                              width: 20.0,
-                            ),
-                            HourlyForecastBox(
-                              time: time[2],
-                              forecastCondition: forecastCondition[2],
-                              tempForecast: tempForecast[2],
-                              tempinC: tempForecastincel[2],
-                            ),
-                            SizedBox(
-                              width: 20.0,
-                            ),
-                            HourlyForecastBox(
-                              time: time[3],
-                              forecastCondition: forecastCondition[3],
-                              tempForecast: tempForecast[3],
-                              tempinC: tempForecastincel[3],
-                            ),
-                            SizedBox(
-                              width: 20.0,
-                            ),
-                            HourlyForecastBox(
-                              time: time[4],
-                              forecastCondition: forecastCondition[4],
-                              tempForecast: tempForecast[4],
-                              tempinC: tempForecastincel[4],
-                            ),
-                            SizedBox(
-                              width: 20.0,
-                            ),
-                            HourlyForecastBox(
-                              time: time[5],
-                              forecastCondition: forecastCondition[5],
-                              tempForecast: tempForecast[5],
-                              tempinC: tempForecastincel[5],
-                            ),
-                            SizedBox(
-                              width: 20.0,
-                            ),
-                            HourlyForecastBox(
-                              time: time[6],
-                              forecastCondition: forecastCondition[6],
-                              tempForecast: tempForecast[6],
-                              tempinC: tempForecastincel[6],
-                            ),
-                            SizedBox(
-                              width: 20.0,
-                            ),
-                            HourlyForecastBox(
-                              time: time[7],
-                              forecastCondition: forecastCondition[7],
-                              tempForecast: tempForecast[7],
-                              tempinC: tempForecastincel[7],
-                            ),
-                            SizedBox(
-                              width: 20.0,
-                            ),
-                            HourlyForecastBox(
-                              time: time[8],
-                              forecastCondition: forecastCondition[8],
-                              tempForecast: tempForecast[8],
-                              tempinC: tempForecastincel[8],
-                            ),
-                            SizedBox(
-                              width: 20.0,
-                            ),
-                            HourlyForecastBox(
-                              time: time[9],
-                              forecastCondition: forecastCondition[9],
-                              tempForecast: tempForecast[9],
-                              tempinC: tempForecastincel[9],
-                            ),
-                            SizedBox(
-                              width: 20.0,
-                            ),
-                            HourlyForecastBox(
-                              time: time[10],
-                              forecastCondition: forecastCondition[10],
-                              tempForecast: tempForecast[10],
-                              tempinC: tempForecastincel[10],
-                            ),
-                            SizedBox(
-                              width: 20.0,
-                            ),
-                            HourlyForecastBox(
-                              time: time[11],
-                              forecastCondition: forecastCondition[11],
-                              tempForecast: tempForecast[11],
-                              tempinC: tempForecastincel[11],
-                            ),
-                          ],
-                        ),
-                      ),
-                    ],
-                  ),
+                    ),
+                  ],
                 ),
-                Container(
-                  height: MediaQuery.of(context).size.height*0.5,
-                  width: MediaQuery.of(context).size.width/4,
-                  child: ListView(
-                    physics: NeverScrollableScrollPhysics(),
-                    children: <Widget> [
+              ),
+              Container(
+                height: MediaQuery.of(context).size.height * 0.5,
+                width: MediaQuery.of(context).size.width / 4,
+                child: ListView(
+                  physics: NeverScrollableScrollPhysics(),
+                  children: <Widget>[
                     Container(
                       margin: EdgeInsets.fromLTRB(20.0, 0.0, 20.0, 0.0),
                       decoration: BoxDecoration(
@@ -1095,7 +939,8 @@ class _LocationScreenState extends State<LocationScreen> {
                       child: Column(
                         children: [
                           Padding(
-                            padding: const EdgeInsets.fromLTRB(30.0, 0, 35.0, 0),
+                            padding:
+                                const EdgeInsets.fromLTRB(30.0, 0, 35.0, 0),
                             child: Row(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
@@ -1114,7 +959,8 @@ class _LocationScreenState extends State<LocationScreen> {
                                       height: 10.0,
                                     ),
                                     Row(
-                                      crossAxisAlignment: CrossAxisAlignment.baseline,
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.baseline,
                                       textBaseline: TextBaseline.alphabetic,
                                       children: [
                                         Text(
@@ -1142,7 +988,8 @@ class _LocationScreenState extends State<LocationScreen> {
                                       height: 10.0,
                                     ),
                                     Row(
-                                      crossAxisAlignment: CrossAxisAlignment.baseline,
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.baseline,
                                       textBaseline: TextBaseline.alphabetic,
                                       children: [
                                         Text(
@@ -1159,7 +1006,7 @@ class _LocationScreenState extends State<LocationScreen> {
                             ),
                           ),
                           SizedBox(
-                            height: 10.0,
+                            height: 6.0,
                           ),
                           Divider(
                             height: 20,
@@ -1169,10 +1016,11 @@ class _LocationScreenState extends State<LocationScreen> {
                             color: Colors.grey,
                           ),
                           SizedBox(
-                            height: 10.0,
+                            height: 6.0,
                           ),
                           Padding(
-                            padding: const EdgeInsets.fromLTRB(30.0, 0, 35.0, 0),
+                            padding:
+                                const EdgeInsets.fromLTRB(30.0, 0, 35.0, 0),
                             child: Row(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
@@ -1191,7 +1039,8 @@ class _LocationScreenState extends State<LocationScreen> {
                                       height: 10.0,
                                     ),
                                     Row(
-                                      crossAxisAlignment: CrossAxisAlignment.baseline,
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.baseline,
                                       textBaseline: TextBaseline.alphabetic,
                                       children: [
                                         Text(
@@ -1207,7 +1056,7 @@ class _LocationScreenState extends State<LocationScreen> {
                                           ),
                                         ),
                                       ],
-                                    )
+                                    ),
                                   ],
                                 ),
                                 Column(
@@ -1225,7 +1074,8 @@ class _LocationScreenState extends State<LocationScreen> {
                                       height: 10.0,
                                     ),
                                     Row(
-                                      crossAxisAlignment: CrossAxisAlignment.baseline,
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.baseline,
                                       textBaseline: TextBaseline.alphabetic,
                                       children: [
                                         Text(
@@ -1248,7 +1098,7 @@ class _LocationScreenState extends State<LocationScreen> {
                             ),
                           ),
                           SizedBox(
-                            height: 10.0,
+                            height: 6.0,
                           ),
                           Divider(
                             height: 20,
@@ -1258,10 +1108,11 @@ class _LocationScreenState extends State<LocationScreen> {
                             color: Colors.grey,
                           ),
                           SizedBox(
-                            height: 10.0,
+                            height: 6.0,
                           ),
                           Padding(
-                            padding: const EdgeInsets.fromLTRB(30.0, 0, 35.0, 0),
+                            padding:
+                                const EdgeInsets.fromLTRB(30.0, 0, 35.0, 0),
                             child: Row(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
@@ -1280,11 +1131,12 @@ class _LocationScreenState extends State<LocationScreen> {
                                       height: 10.0,
                                     ),
                                     Row(
-                                      crossAxisAlignment: CrossAxisAlignment.baseline,
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.baseline,
                                       textBaseline: TextBaseline.alphabetic,
                                       children: [
                                         Text(
-                                          ' $windspeed',
+                                          ' $windSpeed',
                                           style: TextStyle(
                                             fontSize: 17.0,
                                           ),
@@ -1317,7 +1169,8 @@ class _LocationScreenState extends State<LocationScreen> {
                                       height: 10.0,
                                     ),
                                     Row(
-                                      crossAxisAlignment: CrossAxisAlignment.baseline,
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.baseline,
                                       textBaseline: TextBaseline.alphabetic,
                                       children: [
                                         Text(
@@ -1343,23 +1196,24 @@ class _LocationScreenState extends State<LocationScreen> {
                         ],
                       ),
                     ),
-            ],
-                  ),
+                  ],
                 ),
-              ],
-            ),
+              ),
+            ],
           ),
         ),
+      ),
     );
   }
 }
 
 class HourlyForecastBox extends StatelessWidget {
-  HourlyForecastBox({this.time, this.forecastCondition, this.tempForecast,this.tempinC});
+  HourlyForecastBox(
+      {this.time, this.forecastCondition, this.tempForecast, this.tempInC});
   final time;
   final forecastCondition;
   final tempForecast;
-  final tempinC;
+  final tempInC;
 
   @override
   Widget build(BuildContext context) {
@@ -1386,17 +1240,19 @@ class HourlyForecastBox extends StatelessWidget {
               size: 21.0,
             ),
           ),
-          Text('$tempForecast° ${changeUnit(tempForecast, tempinC)}'),
+          Text('$tempForecast° ${changeUnit(tempForecast, tempInC)}'),
         ],
       ),
     );
   }
 }
-dynamic changetemp(var temp) {
+
+dynamic changeTemp(var temp) {
   return (1.8 * temp + 32);
 }
-String changeUnit(var temp, var tempinc) {
-  if (temp == tempinc)
+
+String changeUnit(var temp, var tempInC) {
+  if (temp == tempInC)
     return 'C';
   else
     return 'F';

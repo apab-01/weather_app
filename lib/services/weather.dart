@@ -6,38 +6,38 @@ const apiKey = '1645cd387747d60c320d465f546474e6';
 const token = '700050914cc017cb38735082056a63b4e4020eee';
 
 class WeatherModel {
-
   Future<dynamic> getCityWeather(dynamic cityName) async {
     NetworkHelper network = NetworkHelper(
         'https://api.openweathermap.org/data/2.5/weather?q=$cityName&appid=$apiKey&units=metric');
     var weatherData = await network.getData();
     return weatherData;
   }
-
   Future<dynamic> getLocationWeather() async {
     Location l = Location();
     await l.getCurrentLocation();
     NetworkHelper network = NetworkHelper(
-        'https://api.openweathermap.org/data/2.5/weather?lat=${l
-            .latitude}&lon=${l.longitude}&appid=$apiKey&units=metric');
+        'https://api.openweathermap.org/data/2.5/weather?'
+            'lat=${l.latitude}&lon=${l.longitude}&appid=$apiKey&units=metric');
     var weatherData = await network.getData();
     return weatherData;
   }
-  Future<dynamic> getCityForecast(dynamic latitude,dynamic longitude) async {
+  Future<dynamic> getCityForecast(dynamic latitude, dynamic longitude) async {
     NetworkHelper network = NetworkHelper(
-        'https://api.openweathermap.org/data/2.5/onecall?lat=$latitude&lon=$longitude&exclude=minutely&appid=$apiKey&units=metric');
+        'https://api.openweathermap.org/data/2.5/onecall?'
+            'lat=$latitude&lon=$longitude&exclude=minutely&appid=$apiKey&units=metric');
     var forecastData = await network.getData();
     return forecastData;
   }
-
   Future<dynamic> getLocationForecast() async {
     Location l = Location();
     await l.getCurrentLocation();
     NetworkHelper network = NetworkHelper(
-        'https://api.openweathermap.org/data/2.5/onecall?lat=${l.latitude}&lon=${l.longitude}&exclude=minutely&appid=$apiKey&units=metric');
+        'https://api.openweathermap.org/data/2.5/onecall?'
+            'lat=${l.latitude}&lon=${l.longitude}&exclude=minutely&appid=$apiKey&units=metric');
     var forecastData = await network.getData();
     return forecastData;
   }
+
   Future<dynamic> getLocationAQI() async {
     Location l = Location();
     await l.getCurrentLocation();
@@ -47,7 +47,7 @@ class WeatherModel {
     return aqiData;
   }
 
-  Future<dynamic> getCityAQI(dynamic latitude,dynamic longitude) async {
+  Future<dynamic> getCityAQI(dynamic latitude, dynamic longitude) async {
     NetworkHelper network = NetworkHelper(
         'https://api.waqi.info/feed/geo:$latitude;$longitude/?token=$token');
     var aqiData = await network.getData();
@@ -70,24 +70,23 @@ class WeatherModel {
       return WeatherIcons.rain;
     } else if (condition >= 600 && condition <= 622) {
       return WeatherIcons.snowflake_cold;
-    } else if ( condition >= 701 && condition <= 771) {
+    } else if (condition >= 701 && condition <= 771) {
       if (condition == 701 || condition == 711 || condition == 741) {
         return WeatherIcons.fog;
+      } else {
+        return WeatherIcons.dust;
       }
-      else {
-          return WeatherIcons.dust;
-      }
-    }
-    else if ( condition == 781) {
+    } else if (condition == 781) {
       return WeatherIcons.tornado;
     } else if (condition == 800) {
       return WeatherIcons.day_sunny;
-    } else if (condition == 801 || condition == 802){
+    } else if (condition == 801 || condition == 802) {
       return WeatherIcons.cloud;
-    } else if ( condition == 803 || condition == 804 ) {
+    } else if (condition == 803 || condition == 804) {
       return WeatherIcons.cloudy;
     }
   }
+
   dynamic getuvIndex(var uvi) {
     if (uvi <= 2)
       return 'Low';

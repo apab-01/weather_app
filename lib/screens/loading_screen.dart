@@ -19,7 +19,6 @@ class _LoadingScreenState extends State<LoadingScreen> {
     );
   }
 
-
   Future<Widget> getLocationData(bool darkThemeEnabled) async {
     WeatherModel weatherModel = WeatherModel();
     var weatherData = await weatherModel.getLocationWeather();
@@ -28,10 +27,12 @@ class _LoadingScreenState extends State<LoadingScreen> {
     Navigator.push(
       context,
       MaterialPageRoute(builder: (context) {
-        return LocationScreen(weatherData, forecastData,darkThemeEnabled,aqiData);
+        return LocationScreen(
+            weatherData, forecastData, darkThemeEnabled, aqiData);
       }),
     );
-    return Future.value(LocationScreen(weatherData, forecastData,darkThemeEnabled,aqiData));
+    return Future.value(
+        LocationScreen(weatherData, forecastData, darkThemeEnabled, aqiData));
   }
 
   @override
@@ -49,16 +50,3 @@ class _LoadingScreenState extends State<LoadingScreen> {
     );
   }
 }
-
-//   @override
-//   Widget build(BuildContext context) {
-//     return Scaffold(
-//         body: Center(
-//           child: SpinKitFadingCube(
-//             color: Colors.greenAccent,
-//             size: 100.0,
-//           ),
-//         ),
-//     );
-//   }
-// }

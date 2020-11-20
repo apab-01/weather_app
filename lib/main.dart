@@ -27,17 +27,12 @@ class _MyAppState extends State<MyApp> {
                   buttonColor: Colors.tealAccent,
                   textTheme: ButtonTextTheme.accent,
                 ),
-                accentIconTheme: IconThemeData(
-                  color: Colors.white,
-                ),
-               // disabledColor: Color(0x721E1E1E),
+                accentIconTheme: IconThemeData(color: Colors.white,),
                   disabledColor: Color(0x1018191A),
               )
             : ThemeData.light().copyWith(
                 brightness: Brightness.dark,
-                accentIconTheme: IconThemeData(
-                  color: Colors.black,
-                ),
+                accentIconTheme: IconThemeData(color: Colors.black,),
                 buttonTheme: ButtonThemeData(
                   buttonColor: Colors.blueAccent,
                   textTheme: ButtonTextTheme.accent,
