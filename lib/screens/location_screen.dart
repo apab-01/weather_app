@@ -430,6 +430,17 @@ class _LocationScreenState extends State<LocationScreen> {
         (forecastData['daily'][6]['wind_speed']).toInt(),
         (forecastData['daily'][7]['wind_speed']).toInt(),
       ];
+      if (t == true) {
+        temperature = tempInFahrenheit;
+        tempForecast = tempForecastInFar;
+        minDailyTemp = minDailyTempInF;
+        maxDailyTemp = maxDailyTempInF;
+      } else {
+        temperature = tempInCel;
+        tempForecast = tempForecastInCel;
+        minDailyTemp = minDailyTempInC;
+        maxDailyTemp = maxDailyTempInC;
+      }
     });
   }
 
