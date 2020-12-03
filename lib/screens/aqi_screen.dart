@@ -42,7 +42,10 @@ class _AQIScreenState extends State<AQIScreen> {
       return 'Poor';
     else if (aqi <= 400)
       return 'Very Poor';
-    else if (aqi > 400) return 'Severe';
+    else if (aqi <= 500)
+      return 'Severe';
+    else if ( aqi > 500)
+      return 'Hazardous';
   }
 
   @override
