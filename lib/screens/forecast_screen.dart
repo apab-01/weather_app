@@ -118,7 +118,7 @@ class _ForecastScreenState extends State<ForecastScreen> {
             'Weather Forecast',
             style: TextStyle(
               fontFamily: 'Poppins',
-              fontSize: 22,
+              fontSize: 20,
             ),
           ),
           leading: IconButton(
@@ -146,7 +146,7 @@ class _ForecastScreenState extends State<ForecastScreen> {
                   child: Text(
                     'Next 7 days',
                     style: TextStyle(
-                      fontSize: 27.0,
+                      fontSize: 26.0,
                       fontWeight: FontWeight.w600,
                     ),
                   ),

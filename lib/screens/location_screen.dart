@@ -9,6 +9,7 @@ import 'package:weather_app/services/time.dart';
 import 'package:weather_icons/weather_icons.dart';
 import 'package:rflutter_alert/rflutter_alert.dart';
 import 'package:weather_app/services/block.dart';
+import 'package:weather_app/screens/line_chart.dart';
 
 class LocationScreen extends StatefulWidget {
   final weatherData;
@@ -564,7 +565,43 @@ class _LocationScreenState extends State<LocationScreen> {
               ),
             ),
             Divider(
-              height: 5,
+              height: 3,
+              thickness: 1,
+              indent: 10,
+              endIndent: 10,
+              color: Colors.grey,
+            ),
+            FlatButton(
+              onPressed: () async {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) {
+                      return LineChartSample2(tempForecast,timeIn24Hour);
+                    },
+                  ),
+                );
+              },
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text(
+                    'Temperature Graph',
+                    style: TextStyle(
+                      fontWeight: FontWeight.bold,
+                      fontSize: 17,
+                      color: Theme.of(context).accentIconTheme.color,
+                    ),
+                  ),
+                  Icon(
+                    Icons.graphic_eq,
+                    size: 28.0,
+                  ),
+                ],
+              ),
+            ),
+            Divider(
+              height: 3,
               thickness: 1,
               indent: 10,
               endIndent: 10,
@@ -600,6 +637,7 @@ class _LocationScreenState extends State<LocationScreen> {
               ),
             ),
             Divider(
+              height: 2,
               thickness: 1,
               indent: 10,
               endIndent: 20,
